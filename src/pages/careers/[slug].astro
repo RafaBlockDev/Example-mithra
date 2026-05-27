@@ -1,0 +1,632 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+
+interface Role {
+  slug: string;
+  title: string;
+  team: string;
+  location: string;
+  type: string;
+  salary: string;
+  salaryNote?: string;
+  applications: number;
+  summary: string;
+  responsibilities: string[];
+  lookingFor: string[];
+  niceToHave: string[];
+  techStack?: string[];
+}
+
+export async function getStaticPaths() {
+  const roles: Role[] = [
+  {
+    slug: 'senior-ai-engineer',
+    title: 'Senior AI Engineer',
+    team: 'Engineering',
+    location: 'Worldwide / Remote',
+    type: 'Full-time',
+    salary: '$8,500 – $11,500 USD / month',
+    applications: 847,
+    summary:
+      'We are building production-grade AI systems that process millions of enterprise transactions daily. This role demands someone who can reason about model behavior under distribution shift, architect multi-stage inference pipelines, and own the full lifecycle from experimentation to deployment — without losing sight of latency budgets and cost constraints.',
+    responsibilities: [
+      'Design and implement end-to-end ML pipelines covering data ingestion, feature engineering, model training, evaluation, and serving',
+      'Fine-tune and align large language models (LLMs) for domain-specific enterprise tasks using techniques including RLHF, DPO, and instruction tuning',
+      'Architect retrieval-augmented generation (RAG) systems with hybrid search strategies, reranking layers, and citation tracing for enterprise knowledge bases',
+      'Own inference optimization: quantization (GPTQ, AWQ), model distillation, ONNX export, and TensorRT deployment for sub-100ms P95 latency targets',
+      'Implement robust model evaluation frameworks — not just benchmark scores, but adversarial testing, output consistency checks, and failure mode taxonomy',
+      'Collaborate with platform engineers to design model serving infrastructure on Kubernetes with GPU autoscaling and shadow deployment capabilities',
+      'Define and monitor production ML observability: feature drift, concept drift, output quality regressions, and alert thresholds',
+    ],
+    lookingFor: [
+      'Deep understanding of transformer architectures — not just API usage, but attention mechanisms, positional encodings, and how architectural decisions affect behavior at scale',
+      'Demonstrated ability to debug model failure modes systematically: hallucinations, retrieval failures, context window limitations, and calibration issues',
+      'Strong command of the Python ML ecosystem: PyTorch, HuggingFace Transformers, LangChain/LlamaIndex, vLLM, and Ray Serve',
+      'Ability to reason about compute-cost tradeoffs: when to use a 7B vs. 70B model, when to distill, when to cache, and when inference optimization is premature',
+      'Experience designing evaluation datasets and metrics for tasks without ground truth — understanding of LLM-as-judge, semantic similarity, and task-specific rubrics',
+      'Systems thinking that connects model choices to downstream product outcomes — you understand why precision matters more than recall in a compliance workflow',
+      'Clear written and verbal communication: you can explain a model\'s failure to a non-technical stakeholder and justify an architectural decision to a principal engineer in the same day',
+    ],
+    niceToHave: [
+      'Familiarity with multimodal models (vision-language, document AI)',
+      'Experience with federated learning or privacy-preserving ML techniques',
+      'Contributions to open-source ML projects or published research',
+    ],
+    techStack: ['PyTorch', 'HuggingFace', 'vLLM', 'LangChain', 'Ray', 'Kubernetes', 'MLflow', 'W&B', 'ONNX', 'TensorRT'],
+  },
+  {
+    slug: 'platform-solutions-architect',
+    title: 'Platform Solutions Architect',
+    team: 'Engineering',
+    location: 'Austin, TX / Remote',
+    type: 'Full-time',
+    salary: '$9,500 – $13,000 USD / month',
+    applications: 312,
+    summary:
+      'The Mithra Platform orchestrates complex automation workflows across multi-cloud environments for enterprise clients. This role owns the architectural layer between our core product and client infrastructure — designing integration patterns, data flows, and deployment topologies that must be simultaneously secure, observable, and fault-tolerant at scale.',
+    responsibilities: [
+      'Lead the design of enterprise integration architectures: event-driven systems, workflow orchestration, and API gateway strategies across heterogeneous client environments',
+      'Define and document architectural patterns for common enterprise scenarios — idempotent pipeline design, exactly-once delivery guarantees, saga-based distributed transactions',
+      'Evaluate and select infrastructure primitives per client context: message brokers (Kafka vs. Pub/Sub vs. SQS), workflow engines, and storage backends for specific access patterns',
+      'Produce architectural decision records (ADRs) and technical design documents that serve both internal engineering teams and client solution architects',
+      'Conduct infrastructure security reviews: threat modeling, IAM policy design, network segmentation, and encryption posture assessment for enterprise deployments',
+      'Partner with client engineering teams during platform onboarding — running technical discovery sessions, identifying integration risks, and defining phased rollout plans',
+      'Define SLO/SLA frameworks and observability strategies using distributed tracing, structured logging, and metric aggregation across client-managed infrastructure',
+    ],
+    lookingFor: [
+      'Deep command of cloud-native architecture patterns: you can explain the operational tradeoffs between event sourcing and CQRS without consulting documentation',
+      'Ability to read and critique infrastructure-as-code (Terraform, Pulumi, CDK) and identify security misconfigurations, blast radius issues, and cost anomalies',
+      'Strong grasp of enterprise security architecture: zero-trust network design, OAuth 2.0 / OIDC flows, RBAC vs. ABAC models, and secrets management at scale',
+      'Experience designing systems with explicit failure budgets — you define what happens during a partial outage, not just during happy-path operation',
+      'Capacity to hold technical authority in client-facing architecture reviews without deferring every question back to product or engineering leadership',
+      'Comfort with ambiguity: enterprise environments have undocumented constraints, legacy systems, and organizational politics — you can navigate all three simultaneously',
+      'Proficiency in at least one systems language (Go, Rust, or Java) for evaluating or prototyping platform integrations',
+    ],
+    niceToHave: [
+      'Experience with service mesh architectures (Istio, Linkerd) in production',
+      'Familiarity with enterprise middleware: MuleSoft, Boomi, or IBM Integration Bus',
+      'Certifications: AWS Solutions Architect Professional, GCP Professional Architect, or equivalent',
+    ],
+    techStack: ['Terraform', 'Kubernetes', 'Kafka', 'gRPC', 'Go', 'Istio', 'AWS', 'GCP', 'Azure', 'OpenTelemetry', 'Vault'],
+  },
+  {
+    slug: 'enterprise-account-executive',
+    title: 'Enterprise Account Executive',
+    team: 'Sales',
+    location: 'Austin, TX / Remote',
+    type: 'Full-time',
+    salary: '$6,500 USD / month base · OTE $180,000+ / year',
+    salaryNote: 'Uncapped commission. Accelerators above quota.',
+    applications: 1203,
+    summary:
+      'Mithra sells complex, multi-stakeholder enterprise software to organizations with sophisticated technical and operational requirements. This role is not about volume — it\'s about running disciplined, consultative sales cycles against C-suite and VP-level buyers, across multiple business units, with deal cycles that can span quarters. We are looking for someone who wins by understanding a client\'s operational reality better than they do.',
+    responsibilities: [
+      'Own the full enterprise sales cycle from first qualified meeting through contract execution: discovery, solution design, stakeholder alignment, business case development, negotiation, and close',
+      'Build and maintain accurate stakeholder maps for each opportunity — identifying economic buyers, technical evaluators, champions, and organizational blockers',
+      'Run executive-level discovery sessions that uncover not just stated needs but unstated constraints, political dynamics, and strategic priorities that shape buying decisions',
+      'Develop and deliver compelling business cases tied to measurable client outcomes: cost reduction, headcount avoidance, cycle time improvement, and risk mitigation',
+      'Coordinate cross-functionally with Solutions Engineering, Customer Success, Legal, and Product to advance complex deals without losing momentum',
+      'Maintain rigorous CRM hygiene and pipeline forecasting — your forecast should be a reliable signal, not a negotiation with your manager',
+      'Represent Mithra at industry events, executive roundtables, and strategic prospect meetings in key verticals',
+    ],
+    lookingFor: [
+      'Deep fluency in complex B2B SaaS sales methodology — you can articulate the difference between MEDDPICC and Challenger Sale, and more importantly, you know when to apply which element',
+      'Ability to navigate enterprise procurement processes: legal review, security questionnaires, IT steering committees, and multi-year contract structures',
+      'Genuine technical curiosity — you do not need to write code, but you must be able to engage credibly with VPs of Engineering, CTOs, and technical architects about AI and automation infrastructure',
+      'Strong written communication: your deal emails, business case documents, and executive summaries are clear, specific, and move people to action',
+      'Commercial instinct: you can read a negotiation, know when to hold, when to flex on terms, and how to protect margin while maintaining client trust',
+      'Self-directed pipeline management — you do not wait for inbound to fill your funnel; you identify target accounts, build hypotheses, and open doors through your own outreach',
+    ],
+    niceToHave: [
+      'Background selling AI, data platforms, or enterprise automation software',
+      'Established relationships with C-suite buyers in finance, healthcare, or manufacturing',
+      'Experience with value-selling frameworks applied to multi-year SaaS contracts',
+    ],
+  },
+  {
+    slug: 'ml-operations-engineer',
+    title: 'ML Operations Engineer',
+    team: 'Engineering',
+    location: 'Worldwide / Remote',
+    type: 'Full-time',
+    salary: '$7,500 – $10,500 USD / month',
+    applications: 634,
+    summary:
+      'ML models in production behave differently than ML models in notebooks. This role owns the infrastructure and tooling that makes the difference — from reproducible training pipelines to zero-downtime model updates to alerting systems that catch silent degradation before clients notice. You are the reason our AI systems remain trustworthy at enterprise scale.',
+    responsibilities: [
+      'Design and operate ML pipeline infrastructure: distributed training job orchestration, hyperparameter management, experiment tracking, and artifact versioning across multi-cloud environments',
+      'Build and maintain model deployment infrastructure: blue-green deployments, shadow mode evaluation, canary releases, and rollback mechanisms for production AI systems',
+      'Implement ML observability: feature distribution monitoring, prediction drift detection, data quality validation, and SLO-based alerting for model performance regressions',
+      'Manage the feature store infrastructure — ensuring low-latency online serving, high-throughput offline pipelines, and point-in-time correctness for training data',
+      'Architect CI/CD pipelines for ML: automated retraining triggers, model evaluation gates, approval workflows, and deployment promotion across staging and production environments',
+      'Collaborate with AI engineers to define hardware requirements and optimize GPU utilization: instance selection, spot instance strategies, and compute cost attribution',
+      'Maintain infrastructure-as-code for all MLOps tooling and enforce security and compliance requirements across the ML lifecycle',
+    ],
+    lookingFor: [
+      'Systematic understanding of where ML pipelines fail in production: training/serving skew, label leakage, feature pipeline staleness, and model versioning inconsistencies',
+      'Strong Kubernetes proficiency — you can write Helm charts, debug pod scheduling issues, configure resource quotas, and design GPU node pools without referencing tutorials',
+      'Hands-on experience with at least one managed ML platform (Vertex AI, SageMaker, Azure ML) and at least one open-source MLOps tool (MLflow, Kubeflow, Metaflow, ZenML)',
+      'Ability to design data pipeline architectures with explicit guarantees: idempotency, backfill strategies, and schema evolution handling',
+      'Infrastructure security mindset: you know how to isolate training workloads, protect model artifacts, and audit data access without creating operational bottlenecks',
+      'Strong debugging instinct: when a model\'s production metrics degrade, you can form and test hypotheses across infrastructure, data, and model dimensions simultaneously',
+    ],
+    niceToHave: [
+      'Experience with distributed training frameworks: DeepSpeed, FSDP, Megatron-LM',
+      'Familiarity with streaming data pipelines for real-time feature computation (Flink, Spark Streaming)',
+      'Contributions to open-source MLOps tooling',
+    ],
+    techStack: ['Kubernetes', 'Kubeflow', 'MLflow', 'Airflow', 'Terraform', 'Python', 'Go', 'Prometheus', 'Grafana', 'dbt', 'Spark'],
+  },
+  {
+    slug: 'product-manager-integrations',
+    title: 'Product Manager, Integrations',
+    team: 'Product',
+    location: 'Worldwide / Remote',
+    type: 'Full-time',
+    salary: '$7,000 – $9,500 USD / month',
+    applications: 521,
+    summary:
+      'The Mithra integrations layer connects our platform to 200+ enterprise systems. This PM role sits at the intersection of API design, partner ecosystem strategy, and enterprise client needs. You will define what integrations we build, how they behave under failure conditions, and what the developer and admin experience looks like — while keeping a rigorous eye on adoption, reliability, and time-to-value for each connector.',
+    responsibilities: [
+      'Own the product vision and roadmap for the Mithra integration ecosystem: native connectors, webhook infrastructure, SDK, and iPaaS compatibility layer',
+      'Write precise product specifications for integration behaviors — including authentication flows, error handling contracts, retry semantics, rate limit policies, and event schema designs',
+      'Conduct technical discovery with enterprise clients to understand integration requirements, data flow constraints, and compliance requirements that must shape connector architecture',
+      'Define success metrics for each integration: activation rate, error rate, median time-to-first-event, and support ticket deflection — and use them to prioritize the backlog',
+      'Manage relationships with strategic technology partners (SAP, Salesforce, Snowflake, etc.) to align on integration depth, co-marketing opportunities, and API roadmap dependencies',
+      'Collaborate with engineering to evaluate build vs. buy decisions for integration infrastructure, including iPaaS partnerships and embedded connector frameworks',
+      'Work with GTM teams to translate integration capabilities into technical enablement materials, solution briefs, and competitive positioning',
+    ],
+    lookingFor: [
+      'Genuine technical depth in API design: you can read an OpenAPI spec, identify ambiguities in error handling, and have an opinion on when webhooks are preferable to polling',
+      'Understanding of enterprise integration patterns: you know what an event-driven architecture is, why idempotency keys matter, and how OAuth 2.0 token refresh works in practice',
+      'Ability to scope integration work with precision — you understand that "connect to Salesforce" is not a spec, and you can write the one that actually is',
+      'Customer empathy grounded in technical realism: you can sit with a client\'s IT team, understand their data architecture, and translate their constraints into a workable integration design',
+      'Structured prioritization: you can articulate why connector X is more valuable than connector Y using adoption data, revenue impact, and strategic alignment — not intuition alone',
+      'Comfort holding technical product conversations with engineering leads without needing every decision mediated through a scrum master',
+    ],
+    niceToHave: [
+      'Direct experience building or shipping API products in a SaaS environment',
+      'Familiarity with iPaaS platforms: MuleSoft, Boomi, Workato, Zapier',
+      'Background in enterprise software procurement or IT architecture',
+    ],
+  },
+  {
+    slug: 'customer-success-manager',
+    title: 'Customer Success Manager',
+    team: 'Client Success',
+    location: 'Worldwide / Remote',
+    type: 'Full-time',
+    salary: '$5,500 – $7,500 USD / month',
+    salaryNote: 'Performance bonus up to 20% of annual base.',
+    applications: 789,
+    summary:
+      'Enterprise AI deployments fail not because the technology doesn\'t work — they fail because adoption stalls, use cases aren\'t validated, and the client\'s internal champion loses organizational support. This CSM role exists to prevent that. You will own a portfolio of enterprise accounts, drive outcomes through rigorous success planning, and serve as the operational bridge between Mithra\'s platform capabilities and the client\'s strategic objectives.',
+    responsibilities: [
+      'Own post-sale relationships for a portfolio of enterprise accounts: onboarding, implementation health, adoption milestones, renewal, and expansion',
+      'Conduct structured business reviews (QBRs) with VP and C-level stakeholders — presenting outcome data, flagging risks, and aligning on forward-looking success criteria',
+      'Design and execute 90-day onboarding plans with clear milestones, accountability owners on the client side, and escalation protocols for blocked implementations',
+      'Monitor account health signals: platform usage trends, support ticket velocity, stakeholder engagement, and NPS — and intervene proactively before risks become churn',
+      'Identify and qualify expansion opportunities: additional use cases, new business units, or upgraded tiers — and partner with Sales to close them',
+      'Act as the internal advocate for client needs: synthesizing account feedback into structured product requests and communicating the business impact to the product team',
+      'Build and maintain technical knowledge of the Mithra platform sufficient to perform basic troubleshooting, configure workflows, and guide clients through the product without always relying on engineering escalation',
+    ],
+    lookingFor: [
+      'Ability to run a productive executive business review: you know how to frame outcomes in the language of CFOs and COOs, not just product adoption metrics',
+      'Structured thinking about account risk: you can differentiate between a client who is disengaged and one who is at risk of churn, and your intervention strategy differs accordingly',
+      'Technical credibility sufficient to earn trust from VP-Engineering-level client contacts — you do not need to write code, but you must understand data pipeline concepts, API integrations, and automation workflows at a functional level',
+      'Disciplined account management: you maintain CRM records, success plans, and stakeholder maps as operational tools, not as compliance tasks',
+      'High emotional intelligence in difficult conversations — you can deliver bad news, navigate client frustration, and redirect blame toward problem-solving without becoming defensive',
+      'Commercial awareness: you understand the unit economics of your book of business and can have an informed conversation about ARR, NRR, and logo retention with your manager',
+    ],
+    niceToHave: [
+      'Experience with enterprise software implementations in regulated industries (financial services, healthcare, manufacturing)',
+      'Background in solutions engineering or technical pre-sales that transitioned to post-sale',
+      'Proficiency with CRM platforms (Salesforce, HubSpot) and CS tooling (Gainsight, ChurnZero)',
+    ],
+  },
+  {
+    slug: 'sales-engineer',
+    title: 'Sales Engineer',
+    team: 'Sales',
+    location: 'Worldwide / Remote',
+    type: 'Full-time',
+    salary: '$7,500 – $10,500 USD / month',
+    salaryNote: 'Deal-based commission accelerators on closed revenue.',
+    applications: 418,
+    summary:
+      'Enterprise buyers of AI platforms are sophisticated. They will ask hard questions about model explainability, data residency, API rate limits, and failure recovery — and they expect answers from someone who has actually worked inside the systems they\'re asking about. This role is the technical authority in the sales process: you own the proof-of-concept, you answer the security questionnaire, and you build the integration demo that closes the deal.',
+    responsibilities: [
+      'Lead the technical evaluation phase of enterprise sales cycles: solution design workshops, architecture reviews, and live proof-of-concept deployments tailored to prospect\'s existing stack',
+      'Deliver highly customized product demonstrations that map Mithra\'s capabilities directly to the prospect\'s operational workflows — not generic slide decks',
+      'Respond to technical sections of RFPs, RFIs, and security questionnaires with accurate, detailed, and strategically framed answers',
+      'Design and execute time-boxed POCs (typically 2–4 weeks) with defined success criteria, agreed evaluation rubrics, and documented outcomes',
+      'Serve as the technical liaison between the prospect\'s engineering team and Mithra\'s product and engineering teams during pre-sales evaluation',
+      'Build reusable demo environments, integration templates, and technical collateral that improve the efficiency of the broader sales organization',
+      'Provide structured deal feedback to Product: which capabilities win deals, which gaps lose them, and what the competitive technical landscape looks like in each vertical',
+    ],
+    lookingFor: [
+      'Ability to read a prospect\'s architecture diagram and immediately identify where Mithra fits, where the integration risks are, and what the POC scope should be',
+      'Comfort presenting to mixed technical and executive audiences: you can explain model inference latency to a machine learning engineer and explain its business impact to a CFO in the same meeting',
+      'Hands-on proficiency with at least one major cloud platform (AWS, GCP, or Azure) — enough to deploy and configure Mithra in a client\'s environment without dedicated infrastructure support',
+      'Strong API literacy: you can write and debug REST API calls, read OpenAPI specs, and troubleshoot webhook delivery failures in front of a client without losing composure',
+      'Intellectual honesty: you will not oversell capabilities that don\'t exist, and you can navigate a difficult technical objection without deflecting or fabricating',
+      'POC design instinct: you can scope a proof-of-concept that is achievable in 3 weeks, genuinely demonstrates value, and creates a clear path to a purchasing decision',
+    ],
+    niceToHave: [
+      'Background in software engineering or data engineering before moving to a technical sales role',
+      'Experience with enterprise AI or data platform evaluations from either side of the table',
+      'Familiarity with security compliance frameworks relevant to enterprise buyers: SOC 2, ISO 27001, HIPAA, GDPR',
+    ],
+    techStack: ['REST APIs', 'Python', 'SQL', 'Docker', 'AWS / GCP / Azure', 'Postman', 'Terraform (basic)'],
+  },
+  ];
+  return roles.map(role => ({ params: { slug: role.slug }, props: { role } }));
+}
+
+const { role } = Astro.props as { role: Role };
+---
+
+<Layout
+  title={`${role.title} — Careers at Mithra`}
+  description={role.summary}
+>
+  <Navigation />
+
+  <!-- Header -->
+  <section class="pt-24 pb-12 bg-ibm-gray-100">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8 pt-8">
+      <a href="/careers" class="inline-flex items-center gap-1.5 text-ibm-gray-40 hover:text-white text-sm transition-colors mb-8">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+          <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z"/>
+        </svg>
+        All open roles
+      </a>
+
+      <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+        <div class="max-w-2xl">
+          <!-- High demand badge -->
+          <div class="flex flex-wrap items-center gap-3 mb-5">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-ibm-red/20 border border-ibm-red/30 rounded-full text-xs font-medium text-red-300">
+              <span class="w-1.5 h-1.5 bg-ibm-red rounded-full animate-pulse" aria-hidden="true"></span>
+              High-demand role
+            </span>
+            <span class="text-xs text-ibm-gray-50">
+              <span class="text-ibm-gray-30 font-medium">{role.applications.toLocaleString()}</span> applications received
+            </span>
+          </div>
+
+          <h1 class="text-4xl lg:text-5xl font-light text-white mb-4">{role.title}</h1>
+
+          <div class="flex flex-wrap gap-4 text-sm text-ibm-gray-40">
+            <span class="flex items-center gap-1.5">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C5.243 0 3 2.243 3 5c0 3.75 5 11 5 11s5-7.25 5-11c0-2.757-2.243-5-5-5zm0 7a2 2 0 110-4 2 2 0 010 4z"/></svg>
+              {role.location}
+            </span>
+            <span class="flex items-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              {role.team}
+            </span>
+            <span>{role.type}</span>
+          </div>
+        </div>
+
+        <!-- Salary + CTA -->
+        <div class="flex-shrink-0 bg-white/5 border border-white/10 rounded-lg p-6 min-w-[280px]">
+          <p class="text-xs text-ibm-gray-50 uppercase tracking-wider mb-2">Compensation</p>
+          <p class="text-xl font-semibold text-white mb-1">{role.salary}</p>
+          {role.salaryNote && <p class="text-xs text-ibm-gray-40 mb-4">{role.salaryNote}</p>}
+          {!role.salaryNote && <div class="mb-4"></div>}
+          <button
+            id="apply-trigger"
+            type="button"
+            class="w-full flex items-center justify-center gap-2 px-5 py-3 bg-ibm-blue text-white text-sm font-medium rounded hover:bg-ibm-blue-hover transition-colors focus:outline-none focus:ring-2 focus:ring-ibm-blue focus:ring-offset-2 focus:ring-offset-ibm-gray-100"
+          >
+            Apply for this role
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M4.5 11.5A.5.5 0 015 11h5.793L5.146 5.354a.5.5 0 11.708-.708l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 11.5H5a.5.5 0 01-.5-.5z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Body -->
+  <div class="max-w-8xl mx-auto px-6 lg:px-8 py-16">
+    <div class="max-w-3xl space-y-14">
+
+      <!-- Summary -->
+      <section aria-labelledby="summary-heading">
+        <h2 id="summary-heading" class="text-xs font-semibold text-ibm-blue tracking-widest uppercase mb-4">About the role</h2>
+        <p class="text-ibm-gray-70 leading-relaxed text-lg">{role.summary}</p>
+      </section>
+
+      <!-- Responsibilities -->
+      <section aria-labelledby="resp-heading">
+        <h2 id="resp-heading" class="text-xs font-semibold text-ibm-blue tracking-widest uppercase mb-4">What you'll do</h2>
+        <ul class="space-y-3" role="list">
+          {role.responsibilities.map(item => (
+            <li class="flex items-start gap-3">
+              <span class="mt-2 w-1.5 h-1.5 rounded-full bg-ibm-blue flex-shrink-0" aria-hidden="true"></span>
+              <span class="text-ibm-gray-70 leading-relaxed">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- What we're looking for -->
+      <section aria-labelledby="looking-heading">
+        <h2 id="looking-heading" class="text-xs font-semibold text-ibm-blue tracking-widest uppercase mb-2">What we're looking for</h2>
+        <p class="text-sm text-ibm-gray-50 mb-5">We care about knowledge depth and problem-solving ability — not titles or years on a resume.</p>
+        <ul class="space-y-4" role="list">
+          {role.lookingFor.map(item => (
+            <li class="flex items-start gap-3 border-l-2 border-ibm-gray-20 pl-4 hover:border-ibm-blue transition-colors duration-200">
+              <span class="text-ibm-gray-70 leading-relaxed">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- Nice to have -->
+      {role.niceToHave.length > 0 && (
+        <section aria-labelledby="nice-heading">
+          <h2 id="nice-heading" class="text-xs font-semibold text-ibm-gray-50 tracking-widest uppercase mb-4">Nice to have</h2>
+          <ul class="space-y-2" role="list">
+            {role.niceToHave.map(item => (
+              <li class="flex items-start gap-3 text-sm text-ibm-gray-60">
+                <svg class="w-4 h-4 text-ibm-gray-30 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm3.78 5.78l-4 4a.75.75 0 01-1.06 0l-2-2a.75.75 0 111.06-1.06L7.25 9.19l3.47-3.47a.75.75 0 111.06 1.06z"/></svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      <!-- Tech stack -->
+      {role.techStack && (
+        <section aria-labelledby="stack-heading">
+          <h2 id="stack-heading" class="text-xs font-semibold text-ibm-blue tracking-widest uppercase mb-4">Tech stack</h2>
+          <div class="flex flex-wrap gap-2">
+            {role.techStack.map(tech => (
+              <span class="px-3 py-1.5 bg-ibm-gray-10 border border-ibm-gray-20 text-ibm-gray-70 text-sm rounded font-mono">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <!-- What we offer -->
+      <section aria-labelledby="offer-heading" class="bg-ibm-gray-10 rounded-lg p-8">
+        <h2 id="offer-heading" class="text-xs font-semibold text-ibm-blue tracking-widest uppercase mb-6">What we offer</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          {[
+            { label: 'Remote-first', detail: 'Work from anywhere in the world' },
+            { label: 'Equity', detail: 'Employee stock option plan for all full-time roles' },
+            { label: 'Learning budget', detail: '$2,000 USD/year for certifications & conferences' },
+            { label: 'Health coverage', detail: 'Medical, dental, and vision for you and dependents' },
+            { label: 'Flexible hours', detail: 'Async-first. Output over presence.' },
+            { label: 'Global offsites', detail: 'Quarterly in-person gatherings across our offices' },
+          ].map(item => (
+            <div class="flex items-start gap-3">
+              <svg class="w-4 h-4 text-ibm-blue flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>
+              <div>
+                <span class="text-sm font-medium text-ibm-gray-100">{item.label}</span>
+                <span class="text-sm text-ibm-gray-60"> — {item.detail}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Bottom CTA -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-4 border-t border-ibm-gray-20">
+        <button
+          id="apply-trigger-bottom"
+          type="button"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-ibm-blue text-white font-medium rounded hover:bg-ibm-blue-hover transition-colors focus:outline-none focus:ring-2 focus:ring-ibm-blue focus:ring-offset-2"
+        >
+          Apply for this role
+        </button>
+        <a href="/careers" class="text-sm text-ibm-gray-60 hover:text-ibm-gray-100 transition-colors">
+          ← See all open roles
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <Footer />
+</Layout>
+
+<!-- Apply Modal (same as careers.astro) -->
+<div
+  id="apply-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modal-title"
+  class="fixed inset-0 z-[100] hidden items-center justify-center p-4"
+>
+  <div id="modal-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm" aria-hidden="true"></div>
+  <div class="relative w-full max-w-lg bg-white rounded-lg shadow-ibm-xl overflow-hidden flex flex-col max-h-[90vh]">
+    <div class="flex items-start justify-between px-6 pt-6 pb-4 border-b border-ibm-gray-20 flex-shrink-0">
+      <div>
+        <p class="text-xs font-medium text-ibm-blue tracking-wider uppercase mb-1">Apply Now</p>
+        <h2 id="modal-title" class="text-xl font-semibold text-ibm-gray-100">{role.title}</h2>
+        <p class="text-sm text-ibm-gray-60 mt-0.5">{role.team} · {role.location}</p>
+      </div>
+      <button id="modal-close" type="button" class="text-ibm-gray-50 hover:text-ibm-gray-100 p-1 rounded focus:outline-none focus:ring-2 focus:ring-ibm-blue" aria-label="Close">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="overflow-y-auto flex-grow">
+      <form id="apply-form" class="px-6 py-6 space-y-5" novalidate>
+        <div>
+          <label for="app-name" class="block text-sm font-medium text-ibm-gray-100 mb-1.5">Full name <span class="text-ibm-red" aria-hidden="true">*</span></label>
+          <input type="text" id="app-name" name="name" required autocomplete="name" placeholder="Jane Smith" class="w-full px-3 py-2.5 border border-ibm-gray-20 rounded text-sm text-ibm-gray-100 placeholder-ibm-gray-40 focus:outline-none focus:border-ibm-blue focus:ring-1 focus:ring-ibm-blue transition-colors"/>
+          <p class="hidden mt-1 text-xs text-ibm-red" data-error="app-name">Please enter your full name.</p>
+        </div>
+        <div>
+          <label for="app-email" class="block text-sm font-medium text-ibm-gray-100 mb-1.5">Email address <span class="text-ibm-red" aria-hidden="true">*</span></label>
+          <input type="email" id="app-email" name="email" required autocomplete="email" placeholder="jane@company.com" class="w-full px-3 py-2.5 border border-ibm-gray-20 rounded text-sm text-ibm-gray-100 placeholder-ibm-gray-40 focus:outline-none focus:border-ibm-blue focus:ring-1 focus:ring-ibm-blue transition-colors"/>
+          <p class="hidden mt-1 text-xs text-ibm-red" data-error="app-email">Please enter a valid email address.</p>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-ibm-gray-100 mb-1.5">CV / Resume <span class="text-ibm-red" aria-hidden="true">*</span> <span class="font-normal text-ibm-gray-50">(PDF or DOCX, max 10 MB)</span></label>
+          <div id="drop-zone" class="relative border-2 border-dashed border-ibm-gray-20 rounded-lg p-6 text-center cursor-pointer hover:border-ibm-blue transition-colors focus-within:border-ibm-blue focus-within:ring-1 focus-within:ring-ibm-blue">
+            <input type="file" id="app-cv" name="cv" accept=".pdf,.doc,.docx" required class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" aria-label="Upload CV file"/>
+            <div id="drop-idle">
+              <svg class="w-8 h-8 text-ibm-gray-30 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              <p class="text-sm text-ibm-gray-60">Drag & drop your CV, or <span class="text-ibm-blue font-medium">browse</span></p>
+            </div>
+            <div id="drop-selected" class="hidden items-center justify-center gap-2">
+              <svg class="w-5 h-5 text-ibm-blue flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/></svg>
+              <span id="drop-filename" class="text-sm font-medium text-ibm-gray-100 truncate max-w-xs"></span>
+              <svg class="w-4 h-4 text-ibm-green flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            </div>
+          </div>
+          <p class="hidden mt-1 text-xs text-ibm-red" data-error="app-cv">Please upload your CV (PDF or DOCX, max 10 MB).</p>
+        </div>
+        <div>
+          <label for="app-bio" class="block text-sm font-medium text-ibm-gray-100 mb-1.5">Tell us about yourself <span class="text-ibm-red" aria-hidden="true">*</span></label>
+          <textarea id="app-bio" name="bio" required rows="4" placeholder="Briefly describe your background, what excites you about this role, and anything you'd like us to know..." class="w-full px-3 py-2.5 border border-ibm-gray-20 rounded text-sm text-ibm-gray-100 placeholder-ibm-gray-40 focus:outline-none focus:border-ibm-blue focus:ring-1 focus:ring-ibm-blue transition-colors resize-none"></textarea>
+          <p class="hidden mt-1 text-xs text-ibm-red" data-error="app-bio">Please write a brief description (min. 50 characters).</p>
+        </div>
+        <div class="space-y-3">
+          <p class="text-sm font-medium text-ibm-gray-100">Profiles <span class="font-normal text-ibm-gray-50">(optional)</span></p>
+          <div>
+            <label for="app-linkedin" class="block text-xs text-ibm-gray-60 mb-1">LinkedIn</label>
+            <div class="relative">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 text-ibm-gray-40 text-xs">linkedin.com/in/</span>
+              <input type="text" id="app-linkedin" name="linkedin" placeholder="yourprofile" class="w-full pl-28 pr-3 py-2.5 border border-ibm-gray-20 rounded text-sm text-ibm-gray-100 placeholder-ibm-gray-40 focus:outline-none focus:border-ibm-blue focus:ring-1 focus:ring-ibm-blue transition-colors"/>
+            </div>
+          </div>
+          <div>
+            <label for="app-portfolio" class="block text-xs text-ibm-gray-60 mb-1">Portfolio / Website / GitHub</label>
+            <input type="url" id="app-portfolio" name="portfolio" placeholder="https://yoursite.com" class="w-full px-3 py-2.5 border border-ibm-gray-20 rounded text-sm text-ibm-gray-100 placeholder-ibm-gray-40 focus:outline-none focus:border-ibm-blue focus:ring-1 focus:ring-ibm-blue transition-colors"/>
+          </div>
+        </div>
+        <div class="flex items-center justify-between pt-2 border-t border-ibm-gray-10">
+          <button type="button" id="modal-cancel" class="px-4 py-2.5 text-sm text-ibm-gray-70 hover:text-ibm-gray-100 transition-colors focus:outline-none focus:underline">Cancel</button>
+          <button type="submit" id="submit-btn" class="inline-flex items-center gap-2 px-5 py-2.5 bg-ibm-blue text-white text-sm font-medium rounded hover:bg-ibm-blue-hover transition-colors focus:outline-none focus:ring-2 focus:ring-ibm-blue focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed">
+            <span id="submit-label">Submit Application</span>
+            <svg id="submit-spinner" class="hidden w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"/></svg>
+          </button>
+        </div>
+      </form>
+      <div id="apply-success" class="hidden px-6 py-10 text-center">
+        <div class="w-16 h-16 bg-green-50 border-2 border-ibm-green rounded-full flex items-center justify-center mx-auto mb-6">
+          <svg class="w-8 h-8 text-ibm-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h3 class="text-xl font-semibold text-ibm-gray-100 mb-3">Application submitted!</h3>
+        <p class="text-ibm-gray-70 leading-relaxed mb-2">Your CV has been received successfully.</p>
+        <p class="text-ibm-gray-70 leading-relaxed mb-8">We are currently running several active selection processes and will personally review your application. You can expect to hear from us within the <strong class="text-ibm-gray-100">next 2 weeks</strong>.</p>
+        <button id="success-close" type="button" class="inline-flex items-center gap-2 px-5 py-2.5 bg-ibm-blue text-white text-sm font-medium rounded hover:bg-ibm-blue-hover transition-colors focus:outline-none focus:ring-2 focus:ring-ibm-blue focus:ring-offset-2">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById('apply-modal')!;
+  const backdrop = document.getElementById('modal-backdrop')!;
+  const closeBtn = document.getElementById('modal-close')!;
+  const cancelBtn = document.getElementById('modal-cancel')!;
+  const successClose = document.getElementById('success-close')!;
+  const form = document.getElementById('apply-form') as HTMLFormElement;
+  const successPanel = document.getElementById('apply-success')!;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const submitLabel = document.getElementById('submit-label')!;
+  const submitSpinner = document.getElementById('submit-spinner')!;
+  const cvInput = document.getElementById('app-cv') as HTMLInputElement;
+  const dropZone = document.getElementById('drop-zone')!;
+  const dropIdle = document.getElementById('drop-idle')!;
+  const dropSelected = document.getElementById('drop-selected')!;
+  const dropFilename = document.getElementById('drop-filename')!;
+  const FOCUSABLE = 'button:not([disabled]), input, textarea, [tabindex]:not([tabindex="-1"])';
+
+  function openModal() {
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => modal.querySelector<HTMLElement>(FOCUSABLE)?.focus(), 50);
+  }
+  function closeModal() {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('apply-trigger')?.addEventListener('click', openModal);
+  document.getElementById('apply-trigger-bottom')?.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  cancelBtn.addEventListener('click', closeModal);
+  successClose.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', closeModal);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal(); });
+
+  cvInput.addEventListener('change', () => {
+    const file = cvInput.files?.[0];
+    if (!file) return;
+    dropIdle.classList.add('hidden');
+    dropSelected.classList.remove('hidden');
+    dropSelected.classList.add('flex');
+    dropFilename.textContent = file.name;
+  });
+
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('border-ibm-blue', 'bg-ibm-blue/5'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('border-ibm-blue', 'bg-ibm-blue/5'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropZone.classList.remove('border-ibm-blue', 'bg-ibm-blue/5');
+    const file = e.dataTransfer?.files[0];
+    if (file) {
+      const dt = new DataTransfer();
+      dt.items.add(file);
+      cvInput.files = dt.files;
+      cvInput.dispatchEvent(new Event('change'));
+    }
+  });
+
+  function clearErrors() {
+    document.querySelectorAll('[data-error]').forEach(el => el.classList.add('hidden'));
+    document.querySelectorAll('input, textarea').forEach(el => { el.classList.remove('border-ibm-red'); el.removeAttribute('aria-invalid'); });
+  }
+  function showError(id: string) {
+    const el = document.getElementById(id);
+    el?.classList.add('border-ibm-red');
+    el?.setAttribute('aria-invalid', 'true');
+    document.querySelector(`[data-error="${id}"]`)?.classList.remove('hidden');
+  }
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    clearErrors();
+    let valid = true;
+    const name = (document.getElementById('app-name') as HTMLInputElement).value.trim();
+    const email = (document.getElementById('app-email') as HTMLInputElement).value.trim();
+    const bio = (document.getElementById('app-bio') as HTMLTextAreaElement).value.trim();
+    if (!name) { showError('app-name'); valid = false; }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { showError('app-email'); valid = false; }
+    if (!cvInput.files?.length) { showError('app-cv'); valid = false; }
+    if (bio.length < 50) { showError('app-bio'); valid = false; }
+    if (!valid) return;
+    submitBtn.disabled = true;
+    submitLabel.textContent = 'Uploading...';
+    submitSpinner.classList.remove('hidden');
+    await new Promise(r => setTimeout(r, 1800));
+    form.classList.add('hidden');
+    successPanel.classList.remove('hidden');
+    submitBtn.disabled = false;
+    submitLabel.textContent = 'Submit Application';
+    submitSpinner.classList.add('hidden');
+    successClose.focus();
+  });
+
+  modal.addEventListener('keydown', e => {
+    if (e.key !== 'Tab') return;
+    const els = Array.from(modal.querySelectorAll<HTMLElement>(FOCUSABLE));
+    if (e.shiftKey && document.activeElement === els[0]) { e.preventDefault(); els[els.length-1].focus(); }
+    else if (!e.shiftKey && document.activeElement === els[els.length-1]) { e.preventDefault(); els[0].focus(); }
+  });
+</script>
