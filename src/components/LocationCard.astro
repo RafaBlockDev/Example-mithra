@@ -6,9 +6,10 @@ export interface Props {
   status: 'active' | 'q3-2026' | 'q4-2026';
   address?: string;
   focus?: string;
+  imageSrc?: string;
 }
 
-const { city, country, description, status, address, focus } = Astro.props;
+const { city, country, description, status, address, focus, imageSrc } = Astro.props;
 
 const statusConfig = {
   'active': {
@@ -55,26 +56,37 @@ const config = statusConfig[status];
     </span>
   </div>
 
-  <svg
-    width="100%"
-    viewBox="0 0 280 140"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    class="rounded mb-4"
-    aria-label={`${city} office location map placeholder`}
-    role="presentation"
-  >
-    <rect width="280" height="140" fill="#f4f4f4"/>
-    <rect x="60" y="30" width="160" height="80" rx="4" fill="#e0e0e0"/>
-    <line x1="0" y1="70" x2="280" y2="70" stroke="#d4d4d4" stroke-width="1"/>
-    <line x1="140" y1="0" x2="140" y2="140" stroke="#d4d4d4" stroke-width="1"/>
-    <circle cx="140" cy="70" r="8" fill="#0f62fe"/>
-    <circle cx="140" cy="70" r="16" fill="#0f62fe" opacity="0.2"/>
-    <circle cx="140" cy="70" r="24" fill="#0f62fe" opacity="0.1"/>
-    <text x="140" y="125" text-anchor="middle" fill="#8d8d8d" font-size="9" font-family="IBM Plex Sans">
-      Replace with {city} map — 280×140px
-    </text>
-  </svg>
+  {imageSrc ? (
+    <img
+      src={imageSrc}
+      alt={`${city} office location`}
+      class="rounded w-full object-cover object-center mb-4"
+      style="max-height: 140px;"
+      loading="lazy"
+      decoding="async"
+    />
+  ) : (
+    <svg
+      width="100%"
+      viewBox="0 0 280 140"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="rounded mb-4"
+      aria-label={`${city} office location map placeholder`}
+      role="presentation"
+    >
+      <rect width="280" height="140" fill="#f4f4f4"/>
+      <rect x="60" y="30" width="160" height="80" rx="4" fill="#e0e0e0"/>
+      <line x1="0" y1="70" x2="280" y2="70" stroke="#d4d4d4" stroke-width="1"/>
+      <line x1="140" y1="0" x2="140" y2="140" stroke="#d4d4d4" stroke-width="1"/>
+      <circle cx="140" cy="70" r="8" fill="#0f62fe"/>
+      <circle cx="140" cy="70" r="16" fill="#0f62fe" opacity="0.2"/>
+      <circle cx="140" cy="70" r="24" fill="#0f62fe" opacity="0.1"/>
+      <text x="140" y="125" text-anchor="middle" fill="#8d8d8d" font-size="9" font-family="IBM Plex Sans">
+        Replace with {city} map — 280×140px
+      </text>
+    </svg>
+  )}
 
   <p class="text-sm text-ibm-gray-70 leading-relaxed mb-4">{description}</p>
 

@@ -95,6 +95,7 @@ const features = [
     ],
     imageAlt: 'Mithra unified platform interface screenshot',
     imageLabel: 'Replace with platform UI screenshot — 560×400px',
+    imageSrc: '/images/feature-unified-platform.jpg',
     reverse: false,
     accentColor: '#0f62fe',
   },
@@ -111,6 +112,7 @@ const features = [
     ],
     imageAlt: 'AI deployment and monitoring dashboard',
     imageLabel: 'Replace with AI monitoring screenshot — 560×400px',
+    imageSrc: '/images/feature-ai-scale.jpg',
     reverse: true,
     accentColor: '#1192e8',
   },
@@ -127,6 +129,7 @@ const features = [
     ],
     imageAlt: 'Analytics and business intelligence dashboard',
     imageLabel: 'Replace with analytics dashboard screenshot — 560×400px',
+    imageSrc: '/images/feature-analytics.jpg',
     reverse: false,
     accentColor: '#009d9a',
   },
@@ -143,6 +146,7 @@ const features = [
     ],
     imageAlt: 'Integration and connectivity architecture diagram',
     imageLabel: 'Replace with integration diagram — 560×400px',
+    imageSrc: '/images/feature-integration.jpg',
     reverse: true,
     accentColor: '#8a3ffc',
   },
@@ -182,6 +186,7 @@ const locations = [
       "Our Asia-Pacific entry point, establishing Mithra's presence across Southeast Asia and regional partnerships. Focused on logistics, manufacturing, and cross-border commerce automation.",
     status: 'q4-2026' as const,
     focus: 'APAC Operations · Strategic Partnerships · Regional Expansion',
+    imageSrc: '/images/location-asia-city.jpg',
   },
 ];
 
@@ -297,6 +302,7 @@ const cta = {
             imageLabel={feature.imageLabel}
             reverse={feature.reverse}
             accentColor={feature.accentColor}
+            imageSrc={feature.imageSrc}
           />
         ))}
       </div>
@@ -326,6 +332,7 @@ const cta = {
             status={location.status}
             address={location.address}
             focus={location.focus}
+            imageSrc={location.imageSrc}
           />
         ))}
       </div>

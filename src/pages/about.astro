@@ -57,18 +57,28 @@ const values = [
             Today, Mithra serves 500+ enterprise clients across 40+ industries, with active operations in Mexico and the United States, and expansion into Europe and Asia-Pacific underway.
           </p>
         </div>
-        <div class="grid grid-cols-2 gap-6">
-          {[
-            { value: '2021', label: 'Year founded' },
-            { value: '500+', label: 'Enterprise clients' },
-            { value: '40+', label: 'Industry verticals' },
-            { value: '2M+', label: 'Hours automated' },
-          ].map(stat => (
-            <div class="bg-ibm-gray-10 rounded-lg p-6">
-              <div class="text-3xl font-light text-ibm-blue mb-1">{stat.value}</div>
-              <div class="text-sm text-ibm-gray-70">{stat.label}</div>
-            </div>
-          ))}
+        <div class="space-y-6">
+          <img
+            src="/images/about-team-meeting.jpg"
+            alt="Mithra team collaborating in a meeting"
+            class="rounded-lg shadow-ibm-lg w-full object-cover object-center"
+            style="max-height: 260px;"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="grid grid-cols-2 gap-4">
+            {[
+              { value: '2021', label: 'Year founded' },
+              { value: '500+', label: 'Enterprise clients' },
+              { value: '40+', label: 'Industry verticals' },
+              { value: '2M+', label: 'Hours automated' },
+            ].map(stat => (
+              <div class="bg-ibm-gray-10 rounded-lg p-6">
+                <div class="text-3xl font-light text-ibm-blue mb-1">{stat.value}</div>
+                <div class="text-sm text-ibm-gray-70">{stat.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
