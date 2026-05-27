@@ -1,0 +1,131 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Security — Mithra" description="Learn about Mithra's security posture, certifications, infrastructure controls, and vulnerability disclosure program.">
+  <Navigation />
+
+  <!-- Dark header -->
+  <section class="pt-24 pb-12 bg-ibm-gray-100">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8 pt-8">
+      <p class="text-ibm-blue text-sm font-medium tracking-wider uppercase mb-3">Legal</p>
+      <h1 class="text-4xl font-light text-white mb-3">Security</h1>
+      <p class="text-ibm-gray-40 text-sm">Last updated: May 27, 2026</p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="py-16 bg-white">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8">
+      <div class="max-w-3xl">
+
+        <p class="text-ibm-gray-70 leading-relaxed mb-4">
+          At Mithra, security is a first-class engineering and operational discipline — not an afterthought. Our platform handles sensitive enterprise data, and we hold ourselves to the highest standards of confidentiality, integrity, and availability. This page outlines our security posture, certifications, and the controls we maintain to protect your data.
+        </p>
+
+        <!-- Certification Badges -->
+        <h2 class="text-xl font-semibold text-ibm-gray-100 mt-10 mb-4">Certifications &amp; Compliance</h2>
+        <p class="text-ibm-gray-70 leading-relaxed mb-6">
+          We pursue independent third-party verification of our security controls to give you confidence that our commitments are verifiable, not self-reported.
+        </p>
+        <div class="flex flex-wrap gap-4 mb-6">
+          <!-- SOC 2 Type II Badge -->
+          <div class="flex flex-col items-center justify-center border-2 border-ibm-blue rounded px-6 py-4 min-w-[140px]">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-2">
+              <rect width="40" height="40" rx="4" fill="#0f62fe" fill-opacity="0.08"/>
+              <path d="M20 8L33 14V22C33 29.18 27.39 35.88 20 38C12.61 35.88 7 29.18 7 22V14L20 8Z" stroke="#0f62fe" stroke-width="2" fill="none"/>
+              <path d="M14 20L18 24L26 16" stroke="#0f62fe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="text-ibm-gray-100 font-semibold text-sm text-center">SOC 2 Type II</span>
+            <span class="text-ibm-gray-60 text-xs text-center mt-1">Audited annually</span>
+          </div>
+          <!-- ISO 27001 Badge (in progress) -->
+          <div class="flex flex-col items-center justify-center border-2 border-ibm-gray-20 rounded px-6 py-4 min-w-[140px]">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-2">
+              <rect width="40" height="40" rx="4" fill="#f4f4f4"/>
+              <circle cx="20" cy="20" r="12" stroke="#6f6f6f" stroke-width="2" fill="none"/>
+              <path d="M20 14V20L24 23" stroke="#6f6f6f" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span class="text-ibm-gray-70 font-semibold text-sm text-center">ISO 27001</span>
+            <span class="text-ibm-gray-60 text-xs text-center mt-1">In progress — Q4 2026</span>
+          </div>
+          <!-- GDPR Badge -->
+          <div class="flex flex-col items-center justify-center border-2 border-ibm-gray-20 rounded px-6 py-4 min-w-[140px]">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-2">
+              <rect width="40" height="40" rx="4" fill="#f4f4f4"/>
+              <rect x="10" y="14" width="20" height="16" rx="2" stroke="#6f6f6f" stroke-width="2" fill="none"/>
+              <path d="M15 14V11C15 8.24 17.24 6 20 6C22.76 6 25 8.24 25 11V14" stroke="#6f6f6f" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="20" cy="22" r="2" fill="#6f6f6f"/>
+            </svg>
+            <span class="text-ibm-gray-70 font-semibold text-sm text-center">GDPR Compliant</span>
+            <span class="text-ibm-gray-60 text-xs text-center mt-1">SCCs in place</span>
+          </div>
+        </div>
+
+        <h2 class="text-xl font-semibold text-ibm-gray-100 mt-10 mb-4">Infrastructure Security</h2>
+        <p class="text-ibm-gray-70 leading-relaxed mb-4">
+          Our platform is deployed across <strong class="text-ibm-gray-100">AWS and Google Cloud Platform (GCP)</strong> in a multi-region, high-availability configuration. We maintain separate environments for production, staging, and development, with strict network segmentation between them.
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-ibm-gray-70 mb-4">
+          <li><strong class="text-ibm-gray-100">Encryption at rest:</strong> All customer data is encrypted using AES-256 encryption. Encryption keys are managed via AWS KMS and GCP Cloud KMS, with hardware security module (HSM) backing.</li>
+          <li><strong class="text-ibm-gray-100">Encryption in transit:</strong> All data transmitted between clients and our services uses TLS 1.3. We enforce HSTS and support certificate pinning for our mobile SDK.</li>
+          <li><strong class="text-ibm-gray-100">Network controls:</strong> Virtual private clouds (VPCs) with private subnets, security groups, and web application firewalls (WAF) protect our compute layer. DDoS mitigation is applied at the network edge.</li>
+          <li><strong class="text-ibm-gray-100">Logging and monitoring:</strong> All infrastructure events and API calls are logged, retained for 12 months, and monitored 24/7 with automated alerting for anomalous activity.</li>
+        </ul>
+
+        <h2 class="text-xl font-semibold text-ibm-gray-100 mt-10 mb-4">Application Security</h2>
+        <ul class="list-disc pl-5 space-y-2 text-ibm-gray-70 mb-4">
+          <li><strong class="text-ibm-gray-100">Penetration testing:</strong> We engage independent security firms to conduct full-scope penetration tests on a quarterly basis. Findings are remediated on a risk-prioritized schedule, with critical findings addressed within 72 hours.</li>
+          <li><strong class="text-ibm-gray-100">Bug bounty program:</strong> Responsible disclosure is rewarded through our bug bounty program. Security researchers can submit findings via <a href="mailto:security@mithra.ai" class="text-ibm-blue hover:underline">security@mithra.ai</a>. We aim to triage all reports within 5 business days.</li>
+          <li><strong class="text-ibm-gray-100">SAST and DAST in CI:</strong> Static Application Security Testing (SAST) and Dynamic Application Security Testing (DAST) tools are integrated into our CI/CD pipeline. Every pull request is scanned for common vulnerabilities (OWASP Top 10) before merging.</li>
+          <li><strong class="text-ibm-gray-100">Dependency management:</strong> Software composition analysis (SCA) tools continuously scan our dependencies for known CVEs. Critical vulnerabilities trigger automated alerts and blocked deployments.</li>
+        </ul>
+
+        <h2 class="text-xl font-semibold text-ibm-gray-100 mt-10 mb-4">Access Controls</h2>
+        <ul class="list-disc pl-5 space-y-2 text-ibm-gray-70 mb-4">
+          <li><strong class="text-ibm-gray-100">Role-based access control (RBAC):</strong> Access to production systems follows the principle of least privilege. Engineers are granted only the permissions necessary for their specific role.</li>
+          <li><strong class="text-ibm-gray-100">SSO and SAML:</strong> Enterprise customers can integrate Mithra with their Identity Provider (IdP) via SAML 2.0 for centralized authentication management.</li>
+          <li><strong class="text-ibm-gray-100">Multi-factor authentication (MFA):</strong> MFA is required for all internal Mithra employee accounts. We strongly recommend — and can enforce at the organization level — MFA for all customer accounts.</li>
+          <li><strong class="text-ibm-gray-100">Privileged access management (PAM):</strong> All privileged access to production infrastructure is brokered through a PAM system, with just-in-time access provisioning and full session recording.</li>
+        </ul>
+
+        <h2 class="text-xl font-semibold text-ibm-gray-100 mt-10 mb-4">Incident Response</h2>
+        <p class="text-ibm-gray-70 leading-relaxed mb-4">
+          We maintain a documented incident response plan that is tested through tabletop exercises at least twice per year. Our dedicated security team is on call 24/7.
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-ibm-gray-70 mb-4">
+          <li><strong class="text-ibm-gray-100">Customer notification SLA:</strong> In the event of a confirmed security incident affecting customer data, we will notify affected customers within <strong class="text-ibm-gray-100">24 hours</strong> of confirming the incident, in line with applicable regulatory requirements.</li>
+          <li><strong class="text-ibm-gray-100">Post-incident review:</strong> All significant security incidents result in a formal post-mortem report. Customers with Enterprise plans may request a summary of the report.</li>
+        </ul>
+
+        <h2 class="text-xl font-semibold text-ibm-gray-100 mt-10 mb-4">Data Residency Options</h2>
+        <p class="text-ibm-gray-70 leading-relaxed mb-4">
+          Enterprise customers can specify the geographic region in which their data is stored and processed. Mithra currently supports the following data residency options:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-ibm-gray-70 mb-4">
+          <li><strong class="text-ibm-gray-100">United States:</strong> AWS us-east-1 and us-west-2.</li>
+          <li><strong class="text-ibm-gray-100">European Union:</strong> AWS eu-west-1 (Ireland) and GCP europe-west4 (Netherlands).</li>
+          <li><strong class="text-ibm-gray-100">Latin America:</strong> AWS sa-east-1 (São Paulo) and GCP southamerica-east1.</li>
+        </ul>
+        <p class="text-ibm-gray-70 leading-relaxed mb-4">
+          Data residency must be configured at account creation. Contact your account manager to discuss residency requirements before onboarding.
+        </p>
+
+        <h2 class="text-xl font-semibold text-ibm-gray-100 mt-10 mb-4">Vulnerability Disclosure</h2>
+        <p class="text-ibm-gray-70 leading-relaxed mb-4">
+          We welcome reports from the security research community. If you believe you have discovered a vulnerability in our systems, please report it responsibly:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-ibm-gray-70 mb-4">
+          <li>Email: <a href="mailto:security@mithra.ai" class="text-ibm-blue hover:underline">security@mithra.ai</a> (PGP key available on request)</li>
+          <li>Please do not publicly disclose the vulnerability until we have had a reasonable opportunity to address it (coordinated disclosure).</li>
+          <li>We do not pursue legal action against researchers acting in good faith under our disclosure policy.</li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

@@ -1,0 +1,206 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+
+const challenges = [
+  {
+    number: '01',
+    title: 'Patient Data Silos',
+    description: 'Clinical data lives across dozens of disconnected systems — EHRs, lab platforms, imaging archives, and payer portals — each with its own schema and access model. Care teams spend more time hunting for information than treating patients.',
+  },
+  {
+    number: '02',
+    title: 'Manual Prior Authorization',
+    description: 'Prior authorization workflows are paper-heavy, phone-dependent, and chronically delayed. Patients wait days or weeks for approvals that could be processed in minutes, while clinical staff are consumed by repetitive back-and-forth with payers.',
+  },
+  {
+    number: '03',
+    title: 'Clinical Workflow Bottlenecks',
+    description: 'Nurses and physicians spend up to 35% of their shift on documentation and administrative tasks that add no clinical value. Burnout is rising, and the cognitive overhead of fragmented tools is a direct patient safety risk.',
+  },
+];
+
+const solutions = [
+  {
+    icon: 'M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4',
+    title: 'Unified Patient Data Platform',
+    description: 'Mithra integrates with your existing EHR, lab, imaging, and claims systems via HL7 FHIR APIs to create a single longitudinal patient record — accessible in real time by every authorized care team member, fully HIPAA compliant.',
+  },
+  {
+    icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+    title: 'Automated Prior Authorization',
+    description: 'Our AI reviews clinical criteria, payer policies, and patient history to generate complete, compliant prior auth submissions in seconds. Automatic follow-up and status tracking eliminates phone queues entirely.',
+  },
+  {
+    icon: 'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z',
+    title: 'Clinical Decision Support AI',
+    description: 'Surface relevant clinical guidelines, drug interaction alerts, and evidence-based care pathways directly inside the clinician\'s existing workflow — reducing diagnostic delays and supporting consistent care standards across your organization.',
+  },
+  {
+    icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2',
+    title: 'Intelligent Documentation Automation',
+    description: 'Ambient AI transcription converts clinical conversations into structured, billable documentation in real time — reducing after-hours charting by up to 60% and giving clinicians time back for patient-facing care.',
+  },
+];
+
+const stats = [
+  { value: '85%', label: 'Faster prior authorization' },
+  { value: '60%', label: 'Reduction in admin overhead' },
+  { value: 'HIPAA', label: 'Compliant by design' },
+  { value: '35%', label: 'Reduction in clinician charting time' },
+];
+---
+
+<Layout
+  title="Healthcare AI Solutions — Mithra"
+  description="Mithra delivers HIPAA-compliant enterprise AI for healthcare: unified patient data, automated prior authorization, and clinical decision support that gives clinicians more time for care."
+>
+  <Navigation />
+
+  <!-- Hero -->
+  <section class="pt-24 pb-20 bg-ibm-gray-100 relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute top-0 right-0 w-1/2 h-full opacity-5"
+        style="background: linear-gradient(135deg, #009d9a 0%, transparent 70%);">
+      </div>
+      <div class="absolute bottom-0 right-0 w-px h-full bg-ibm-teal/20"></div>
+    </div>
+    <div class="max-w-8xl mx-auto px-6 lg:px-8 pt-8 relative">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-3 mb-6">
+          <a href="/" class="text-xs text-ibm-gray-50 hover:text-ibm-gray-30 transition-colors">Mithra</a>
+          <span class="text-ibm-gray-70 text-xs" aria-hidden="true">/</span>
+          <a href="/#industries" class="text-xs text-ibm-gray-50 hover:text-ibm-gray-30 transition-colors">Industries</a>
+          <span class="text-ibm-gray-70 text-xs" aria-hidden="true">/</span>
+          <span class="text-xs text-ibm-gray-40">Healthcare</span>
+        </div>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-ibm-teal/20 border border-ibm-teal/30 rounded-full mb-6">
+          <svg class="w-3.5 h-3.5 text-ibm-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+          </svg>
+          <span class="text-xs font-medium text-ibm-teal tracking-wider uppercase">Healthcare</span>
+        </div>
+        <h1 class="text-5xl lg:text-6xl font-light text-white mb-6 leading-tight">
+          AI that gives clinicians<br/>
+          <span class="font-semibold" style="color: #3ddbd9;">more time for patients</span>
+        </h1>
+        <p class="text-xl text-ibm-gray-30 leading-relaxed max-w-2xl mb-10">
+          Mithra unifies patient data, automates administrative workflows, and brings decision intelligence to the point of care — all within your existing systems and fully HIPAA compliant.
+        </p>
+        <div class="flex flex-wrap items-center gap-4">
+          <a
+            href="/#contact"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-ibm-blue text-white font-medium rounded hover:bg-ibm-blue-hover transition-colors duration-150"
+          >
+            Schedule a Demo
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+          <a
+            href="/#solutions"
+            class="inline-flex items-center gap-2 px-6 py-3 text-ibm-gray-30 border border-ibm-gray-70 rounded hover:border-ibm-gray-40 hover:text-white transition-colors duration-150"
+          >
+            View Platform Overview
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Challenges -->
+  <section class="py-20 bg-white">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8">
+      <div class="mb-14">
+        <p class="text-sm font-medium text-ibm-teal tracking-wider uppercase mb-3">Challenges We Solve</p>
+        <h2 class="text-3xl font-light text-ibm-gray-100 max-w-2xl">
+          The operational gaps driving burnout and cost across health systems
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        {challenges.map((challenge) => (
+          <div class="border border-ibm-gray-20 rounded-lg p-8 hover:border-ibm-teal hover:shadow-ibm-lg transition-all duration-300 group">
+            <div class="text-xs font-medium text-ibm-teal tracking-widest mb-4 font-mono">{challenge.number}</div>
+            <h3 class="text-xl font-semibold text-ibm-gray-100 mb-4 group-hover:text-ibm-teal transition-colors">{challenge.title}</h3>
+            <p class="text-sm text-ibm-gray-70 leading-relaxed">{challenge.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Solutions -->
+  <section class="py-20 bg-ibm-gray-10">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8">
+      <div class="mb-14">
+        <p class="text-sm font-medium text-ibm-teal tracking-wider uppercase mb-3">Our Solutions</p>
+        <h2 class="text-3xl font-light text-ibm-gray-100 max-w-2xl">
+          HIPAA-compliant AI designed for the complexity of clinical operations
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8">
+        {solutions.map((solution) => (
+          <div class="bg-white border border-ibm-gray-20 rounded-lg p-8 flex gap-6 hover:border-ibm-teal hover:shadow-ibm-md transition-all duration-300">
+            <div class="flex-shrink-0 w-12 h-12 bg-ibm-teal/10 rounded-lg flex items-center justify-center" aria-hidden="true">
+              <svg class="w-6 h-6 text-ibm-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d={solution.icon}/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-ibm-gray-100 mb-2">{solution.title}</h3>
+              <p class="text-sm text-ibm-gray-70 leading-relaxed">{solution.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="py-20 bg-ibm-blue">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8">
+      <p class="text-sm font-medium text-ibm-blue-light tracking-wider uppercase mb-12 text-center">Measured Outcomes</p>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        {stats.map((stat) => (
+          <div class="text-center">
+            <div class="text-4xl lg:text-5xl font-light text-white mb-2">{stat.value}</div>
+            <div class="text-sm text-ibm-blue-light">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-ibm-gray-100">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+      <p class="text-sm font-medium text-ibm-teal tracking-wider uppercase mb-4">Get Started</p>
+      <h2 class="text-4xl font-light text-white mb-4">
+        Let's put your clinical staff back at the bedside
+      </h2>
+      <p class="text-ibm-gray-30 text-lg mb-10 max-w-2xl mx-auto">
+        Our healthcare solution architects will assess your current workflows and show you where Mithra delivers the fastest time-to-value — without disrupting your existing systems.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a
+          href="/#contact"
+          class="inline-flex items-center gap-2 px-8 py-4 bg-ibm-blue text-white font-medium rounded hover:bg-ibm-blue-hover transition-colors duration-150 text-base"
+        >
+          Start Free Consultation
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+        <a
+          href="/industries/manufacturing"
+          class="inline-flex items-center gap-2 px-6 py-4 text-ibm-gray-30 border border-ibm-gray-70 rounded hover:border-ibm-gray-40 hover:text-white transition-colors duration-150 text-base"
+        >
+          Explore Manufacturing Solutions
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

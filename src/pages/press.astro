@@ -1,0 +1,107 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+const pressReleases = [
+  {
+    date: 'May 15, 2026',
+    title: 'Mithra Announces European Expansion with Amsterdam Office Opening in Q3 2026',
+    excerpt: 'Mithra today announced plans to open its first European office in Amsterdam, positioning the company to serve the EU market with full GDPR compliance infrastructure.',
+    tag: 'Expansion',
+  },
+  {
+    date: 'March 8, 2026',
+    title: 'Mithra Surpasses 500 Enterprise Clients Milestone, Reports 2M+ Automated Hours',
+    excerpt: 'Mithra announced today it has crossed the 500 enterprise client threshold, with its platform having automated over 2 million operational hours across 40+ industry verticals.',
+    tag: 'Milestone',
+  },
+  {
+    date: 'January 22, 2026',
+    title: 'Mithra Launches Process Intelligence Suite for Manufacturing Sector',
+    excerpt: 'The new Process Intelligence Suite brings real-time production line analytics and predictive maintenance capabilities to manufacturing enterprises of all sizes.',
+    tag: 'Product',
+  },
+  {
+    date: 'November 10, 2025',
+    title: 'Mithra Expands North American Presence with Austin R&D Center',
+    excerpt: 'Mithra opened its North American headquarters and research center in Austin, Texas, adding 80 engineering and sales positions to support its growing US client base.',
+    tag: 'Expansion',
+  },
+];
+
+const coverage = [
+  { outlet: 'TechCrunch', title: 'How Mithra is winning enterprise AI contracts in Latin America', date: 'Apr 2026' },
+  { outlet: 'Forbes', title: 'The 10 Enterprise AI Startups to Watch in 2026', date: 'Jan 2026' },
+  { outlet: 'VentureBeat', title: 'Mithra raises Series B to accelerate global automation platform', date: 'Oct 2025' },
+];
+---
+
+<Layout title="Press & Media — Mithra" description="Latest news, press releases, and media coverage from Mithra. Press kit available for download.">
+  <Navigation />
+
+  <!-- Hero -->
+  <section class="pt-24 pb-16 bg-ibm-gray-100">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8 pt-8">
+      <div class="max-w-3xl">
+        <div class="inline-block px-3 py-1 bg-ibm-blue/20 border border-ibm-blue/30 rounded-full mb-6">
+          <span class="text-xs font-medium text-ibm-blue-light tracking-wider uppercase">Press & Media</span>
+        </div>
+        <h1 class="text-5xl font-light text-white mb-6">
+          Mithra in the <span class="font-semibold text-ibm-blue">news</span>
+        </h1>
+        <p class="text-xl text-ibm-gray-30 leading-relaxed">
+          Latest press releases, announcements, and media coverage. For press inquiries, contact press@mithra.ai
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Press releases -->
+  <section class="py-20 bg-white">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8">
+      <p class="text-sm font-medium text-ibm-blue tracking-wider uppercase mb-10">Press Releases</p>
+      <div class="space-y-6">
+        {pressReleases.map(pr => (
+          <article class="border border-ibm-gray-20 rounded-lg p-6 lg:p-8 hover:border-ibm-blue hover:shadow-ibm-md transition-all duration-200">
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+              <span class="text-xs font-medium text-ibm-gray-50">{pr.date}</span>
+              <span class="text-xs font-medium text-ibm-blue bg-ibm-blue/10 px-2 py-0.5 rounded">{pr.tag}</span>
+            </div>
+            <h2 class="text-xl font-semibold text-ibm-gray-100 mb-3">{pr.title}</h2>
+            <p class="text-ibm-gray-70 leading-relaxed">{pr.excerpt}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Media coverage -->
+  <section class="py-20 bg-ibm-gray-10">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8">
+      <p class="text-sm font-medium text-ibm-blue tracking-wider uppercase mb-10">Media Coverage</p>
+      <div class="grid sm:grid-cols-3 gap-6">
+        {coverage.map(item => (
+          <div class="bg-white border border-ibm-gray-20 rounded-lg p-6">
+            <p class="text-xs text-ibm-gray-50 mb-1">{item.date}</p>
+            <p class="text-sm font-semibold text-ibm-blue mb-2">{item.outlet}</p>
+            <p class="text-sm text-ibm-gray-70 leading-relaxed">{item.title}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Media kit -->
+  <section class="py-20 bg-ibm-blue">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-light text-white mb-4">Media Kit</h2>
+      <p class="text-ibm-blue-light mb-8">Download logos, brand guidelines, executive photos, and product screenshots.</p>
+      <a href="/#contact" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-ibm-blue font-medium rounded hover:bg-ibm-gray-10 transition-colors">
+        Request Media Kit
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

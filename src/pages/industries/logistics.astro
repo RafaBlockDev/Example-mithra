@@ -1,0 +1,206 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+
+const challenges = [
+  {
+    number: '01',
+    title: 'Routing Inefficiency',
+    description: 'Static routing algorithms and manual dispatch decisions leave significant fuel, time, and capacity on the table every day. With driver shortages, fuel volatility, and real-time traffic complexity, optimizing routes based on yesterday\'s data is no longer competitive.',
+  },
+  {
+    number: '02',
+    title: 'Demand Forecasting Errors',
+    description: 'Forecasting errors cascade across the entire network — overprovisioned capacity in slow corridors, under-resourced hubs during peak demand, and chronic mismatches between inventory positioning and where customers actually need product.',
+  },
+  {
+    number: '03',
+    title: 'Last-Mile Cost Pressure',
+    description: 'Last-mile delivery accounts for over 50% of total shipping cost, and customer expectations for same-day or next-day delivery continue to intensify. Without AI-driven orchestration, last-mile economics only get worse as delivery density increases.',
+  },
+];
+
+const solutions = [
+  {
+    icon: 'M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7',
+    title: 'AI Route Optimization',
+    description: 'Mithra\'s routing engine re-optimizes every delivery route in real time, incorporating live traffic, weather, vehicle capacity, time windows, and driver hours-of-service constraints. Dynamic rerouting during disruptions reduces total miles driven by up to 30%.',
+  },
+  {
+    icon: 'M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z',
+    title: 'ML Demand Forecasting',
+    description: 'Our multi-horizon forecasting models blend historical shipment data, seasonal patterns, macroeconomic indicators, and customer behavior signals to deliver SKU-level demand forecasts at 94% accuracy — enabling proactive network positioning weeks ahead of peaks.',
+  },
+  {
+    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+    title: 'Last-Mile Automation',
+    description: 'Intelligent delivery sequencing, automated customer notification, proof-of-delivery capture, and exception handling combine to double last-mile throughput per driver — without adding vehicles or headcount to your fleet.',
+  },
+  {
+    icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01',
+    title: 'Network-Wide Control Tower',
+    description: 'A unified visibility layer aggregates shipment status, carrier performance, exception alerts, and SLA risk across your entire logistics network — giving operations managers one screen to manage what used to require a dozen.',
+  },
+];
+
+const stats = [
+  { value: '30%', label: 'Reduction in fuel costs' },
+  { value: '94%', label: 'Demand forecast accuracy' },
+  { value: '2x', label: 'Faster last-mile throughput' },
+  { value: '50%', label: 'Reduction in delivery exceptions' },
+];
+---
+
+<Layout
+  title="Logistics & Supply Chain AI Solutions — Mithra"
+  description="Mithra delivers AI for logistics and supply chain: real-time route optimization, ML demand forecasting, and last-mile automation that cuts fuel costs and doubles throughput."
+>
+  <Navigation />
+
+  <!-- Hero -->
+  <section class="pt-24 pb-20 bg-ibm-gray-100 relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute top-0 right-0 w-1/2 h-full opacity-5"
+        style="background: linear-gradient(135deg, #1192e8 0%, transparent 70%);">
+      </div>
+      <div class="absolute bottom-0 right-0 w-px h-full bg-ibm-cyan/20"></div>
+    </div>
+    <div class="max-w-8xl mx-auto px-6 lg:px-8 pt-8 relative">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-3 mb-6">
+          <a href="/" class="text-xs text-ibm-gray-50 hover:text-ibm-gray-30 transition-colors">Mithra</a>
+          <span class="text-ibm-gray-70 text-xs" aria-hidden="true">/</span>
+          <a href="/#industries" class="text-xs text-ibm-gray-50 hover:text-ibm-gray-30 transition-colors">Industries</a>
+          <span class="text-ibm-gray-70 text-xs" aria-hidden="true">/</span>
+          <span class="text-xs text-ibm-gray-40">Logistics & Supply Chain</span>
+        </div>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-ibm-cyan/20 border border-ibm-cyan/30 rounded-full mb-6">
+          <svg class="w-3.5 h-3.5 text-ibm-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+          </svg>
+          <span class="text-xs font-medium text-ibm-cyan tracking-wider uppercase">Logistics & Supply Chain</span>
+        </div>
+        <h1 class="text-5xl lg:text-6xl font-light text-white mb-6 leading-tight">
+          Move faster, spend less.<br/>
+          <span class="font-semibold" style="color: #1192e8;">Intelligent logistics at scale.</span>
+        </h1>
+        <p class="text-xl text-ibm-gray-30 leading-relaxed max-w-2xl mb-10">
+          Mithra optimizes every node of your logistics network — from demand forecasting through last-mile delivery — with AI that adapts in real time to conditions on the ground.
+        </p>
+        <div class="flex flex-wrap items-center gap-4">
+          <a
+            href="/#contact"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-ibm-blue text-white font-medium rounded hover:bg-ibm-blue-hover transition-colors duration-150"
+          >
+            Schedule a Demo
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+          <a
+            href="/#solutions"
+            class="inline-flex items-center gap-2 px-6 py-3 text-ibm-gray-30 border border-ibm-gray-70 rounded hover:border-ibm-gray-40 hover:text-white transition-colors duration-150"
+          >
+            View Platform Overview
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Challenges -->
+  <section class="py-20 bg-white">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8">
+      <div class="mb-14">
+        <p class="text-sm font-medium text-ibm-cyan tracking-wider uppercase mb-3">Challenges We Solve</p>
+        <h2 class="text-3xl font-light text-ibm-gray-100 max-w-2xl">
+          The cost and complexity draining margins from logistics operations
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        {challenges.map((challenge) => (
+          <div class="border border-ibm-gray-20 rounded-lg p-8 hover:border-ibm-cyan hover:shadow-ibm-lg transition-all duration-300 group">
+            <div class="text-xs font-medium text-ibm-cyan tracking-widest mb-4 font-mono">{challenge.number}</div>
+            <h3 class="text-xl font-semibold text-ibm-gray-100 mb-4 group-hover:text-ibm-cyan transition-colors">{challenge.title}</h3>
+            <p class="text-sm text-ibm-gray-70 leading-relaxed">{challenge.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Solutions -->
+  <section class="py-20 bg-ibm-gray-10">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8">
+      <div class="mb-14">
+        <p class="text-sm font-medium text-ibm-cyan tracking-wider uppercase mb-3">Our Solutions</p>
+        <h2 class="text-3xl font-light text-ibm-gray-100 max-w-2xl">
+          End-to-end intelligence from your warehouse to your customer's door
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8">
+        {solutions.map((solution) => (
+          <div class="bg-white border border-ibm-gray-20 rounded-lg p-8 flex gap-6 hover:border-ibm-cyan hover:shadow-ibm-md transition-all duration-300">
+            <div class="flex-shrink-0 w-12 h-12 bg-ibm-cyan/10 rounded-lg flex items-center justify-center" aria-hidden="true">
+              <svg class="w-6 h-6 text-ibm-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d={solution.icon}/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-ibm-gray-100 mb-2">{solution.title}</h3>
+              <p class="text-sm text-ibm-gray-70 leading-relaxed">{solution.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="py-20 bg-ibm-blue">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8">
+      <p class="text-sm font-medium text-ibm-blue-light tracking-wider uppercase mb-12 text-center">Network-Wide Impact</p>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        {stats.map((stat) => (
+          <div class="text-center">
+            <div class="text-4xl lg:text-5xl font-light text-white mb-2">{stat.value}</div>
+            <div class="text-sm text-ibm-blue-light">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-ibm-gray-100">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+      <p class="text-sm font-medium text-ibm-cyan tracking-wider uppercase mb-4">Get Started</p>
+      <h2 class="text-4xl font-light text-white mb-4">
+        Ready to optimize your entire logistics network?
+      </h2>
+      <p class="text-ibm-gray-30 text-lg mb-10 max-w-2xl mx-auto">
+        Our logistics engineers will map your current network flows, identify your highest-cost inefficiencies, and model the exact improvement Mithra delivers — before you commit to anything.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a
+          href="/#contact"
+          class="inline-flex items-center gap-2 px-8 py-4 bg-ibm-blue text-white font-medium rounded hover:bg-ibm-blue-hover transition-colors duration-150 text-base"
+        >
+          Start Free Consultation
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+        <a
+          href="/industries/retail"
+          class="inline-flex items-center gap-2 px-6 py-4 text-ibm-gray-30 border border-ibm-gray-70 rounded hover:border-ibm-gray-40 hover:text-white transition-colors duration-150 text-base"
+        >
+          Explore Retail Solutions
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

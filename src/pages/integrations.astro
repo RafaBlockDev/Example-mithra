@@ -1,0 +1,111 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+const categories = [
+  {
+    name: 'ERP & CRM',
+    integrations: [
+      { name: 'Salesforce', description: 'Sync leads, opportunities, and accounts bidirectionally.', status: 'available' },
+      { name: 'SAP S/4HANA', description: 'Connect financial, supply chain, and manufacturing workflows.', status: 'available' },
+      { name: 'Oracle NetSuite', description: 'Automate ERP data flows and reporting pipelines.', status: 'available' },
+      { name: 'HubSpot', description: 'Marketing automation and CRM synchronization.', status: 'available' },
+    ],
+  },
+  {
+    name: 'Data & Analytics',
+    integrations: [
+      { name: 'Snowflake', description: 'Push processed data directly to your data warehouse.', status: 'available' },
+      { name: 'Databricks', description: 'Run ML pipelines on Databricks clusters from Mithra.', status: 'available' },
+      { name: 'BigQuery', description: 'Stream events and query results to Google BigQuery.', status: 'available' },
+      { name: 'Tableau', description: 'Publish automation metrics to Tableau dashboards.', status: 'beta' },
+    ],
+  },
+  {
+    name: 'Cloud Infrastructure',
+    integrations: [
+      { name: 'AWS', description: 'Native support for S3, Lambda, SQS, RDS, and more.', status: 'available' },
+      { name: 'Google Cloud', description: 'Integrate with GCS, BigQuery, Pub/Sub, and Cloud Run.', status: 'available' },
+      { name: 'Microsoft Azure', description: 'Connect to Azure Blob, Service Bus, and Cosmos DB.', status: 'available' },
+      { name: 'Kubernetes', description: 'Deploy and orchestrate automation agents on any K8s cluster.', status: 'available' },
+    ],
+  },
+  {
+    name: 'Communication & Workflow',
+    integrations: [
+      { name: 'Slack', description: 'Send alerts, approvals, and workflow notifications to Slack.', status: 'available' },
+      { name: 'Microsoft Teams', description: 'Trigger workflows and receive notifications in Teams.', status: 'available' },
+      { name: 'Jira', description: 'Create and update issues automatically from process events.', status: 'available' },
+      { name: 'ServiceNow', description: 'Automate ITSM workflows and incident management.', status: 'beta' },
+    ],
+  },
+];
+
+const statusConfig = {
+  available: { label: 'Available', classes: 'bg-green-50 text-green-700 border-green-200' },
+  beta: { label: 'Beta', classes: 'bg-ibm-blue/10 text-ibm-blue border-ibm-blue/20' },
+  'coming-soon': { label: 'Coming Soon', classes: 'bg-ibm-gray-10 text-ibm-gray-60 border-ibm-gray-20' },
+};
+---
+
+<Layout title="Integrations — Mithra Platform" description="Connect Mithra to your existing enterprise stack. 200+ integrations with SAP, Salesforce, AWS, Snowflake, and more.">
+  <Navigation />
+
+  <section class="pt-24 pb-16 bg-ibm-gray-100">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8 pt-8">
+      <div class="max-w-3xl">
+        <div class="inline-block px-3 py-1 bg-ibm-blue/20 border border-ibm-blue/30 rounded-full mb-6">
+          <span class="text-xs font-medium text-ibm-blue-light tracking-wider uppercase">Integrations</span>
+        </div>
+        <h1 class="text-5xl font-light text-white mb-6">
+          Connect to your <span class="font-semibold text-ibm-blue">entire stack</span>
+        </h1>
+        <p class="text-xl text-ibm-gray-30 leading-relaxed">
+          Mithra integrates natively with 200+ enterprise systems — no custom code required. Connect your ERP, CRM, data warehouse, and cloud infrastructure in minutes.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8 space-y-16">
+      {categories.map(category => (
+        <div>
+          <h2 class="text-sm font-medium text-ibm-blue tracking-wider uppercase mb-6">{category.name}</h2>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {category.integrations.map(integration => {
+              const config = statusConfig[integration.status as keyof typeof statusConfig];
+              return (
+                <div class="border border-ibm-gray-20 rounded-lg p-5 hover:border-ibm-blue hover:shadow-ibm-md transition-all duration-200">
+                  <div class="flex items-start justify-between mb-3">
+                    <div class="w-10 h-10 bg-ibm-gray-10 rounded-lg flex items-center justify-center text-xs font-bold text-ibm-gray-70" aria-hidden="true">
+                      {integration.name.substring(0, 2).toUpperCase()}
+                    </div>
+                    <span class={`text-xs font-medium px-2 py-0.5 border rounded-full ${config.classes}`}>
+                      {config.label}
+                    </span>
+                  </div>
+                  <h3 class="font-semibold text-ibm-gray-100 mb-1">{integration.name}</h3>
+                  <p class="text-xs text-ibm-gray-60 leading-relaxed">{integration.description}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="py-20 bg-ibm-gray-10">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-light text-ibm-gray-100 mb-4">Need a custom integration?</h2>
+      <p class="text-ibm-gray-70 mb-8">Our SDK supports any REST, GraphQL, or event-stream API. Talk to our team about your specific stack.</p>
+      <a href="/#contact" class="inline-flex items-center gap-2 px-6 py-3 bg-ibm-blue text-white font-medium rounded hover:bg-ibm-blue-hover transition-colors">
+        Talk to an engineer
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

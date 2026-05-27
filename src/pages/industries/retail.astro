@@ -1,0 +1,206 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+
+const challenges = [
+  {
+    number: '01',
+    title: 'Inventory Management',
+    description: 'Too much inventory in the wrong locations ties up working capital and creates markdown pressure. Too little means stockouts that drive customers to competitors. Static reorder models and manual buyer judgment cannot keep pace with the speed and complexity of modern retail demand.',
+  },
+  {
+    number: '02',
+    title: 'Personalization at Scale',
+    description: 'Customers expect experiences that feel individually tailored — relevant product recommendations, timely promotions, and content that matches their context. Batch-segmentation approaches cannot deliver true 1:1 personalization across millions of shopper journeys in real time.',
+  },
+  {
+    number: '03',
+    title: 'Returns Processing Burden',
+    description: 'Return rates of 20–30% in e-commerce generate enormous operational cost: inspection labor, restocking delays, write-down decisions, and customer experience friction. Without AI-driven triage, return processing is slow, inconsistent, and expensive.',
+  },
+];
+
+const solutions = [
+  {
+    icon: 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4',
+    title: 'AI-Driven Inventory Optimization',
+    description: 'Mithra\'s inventory engine continuously balances stock across every SKU, store, and distribution center — factoring in real-time demand signals, promotional calendars, lead times, and seasonality to reduce stockouts by 35% while cutting carrying costs simultaneously.',
+  },
+  {
+    icon: 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z',
+    title: 'Real-Time Personalization Engine',
+    description: 'Dynamic 1:1 recommendations, personalized search rankings, and individually-timed promotional offers — all computed at request time using behavioral history, real-time session context, and product availability. Personalized recommendations drive 3x the conversion of generic merchandising.',
+  },
+  {
+    icon: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15',
+    title: 'Automated Returns Intelligence',
+    description: 'AI-powered return triage categorizes every returned item by condition, fraud risk, and optimal disposition path — return to shelf, liquidate, or discard — without human review for standard cases. Processing time drops by 80%, and recovery rates improve significantly.',
+  },
+  {
+    icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',
+    title: 'Unified Commerce Analytics',
+    description: 'A single analytics layer spanning your physical stores, e-commerce channels, marketplaces, and wholesale accounts — giving merchants, buyers, and operators a consistent view of performance, margin, and customer behavior across every touchpoint.',
+  },
+];
+
+const stats = [
+  { value: '35%', label: 'Reduction in stockouts' },
+  { value: '3x', label: 'Conversion on personalized recommendations' },
+  { value: '80%', label: 'Faster returns processing' },
+  { value: '22%', label: 'Increase in average order value' },
+];
+---
+
+<Layout
+  title="Retail & Commerce AI Solutions — Mithra"
+  description="Mithra delivers AI for retail and commerce: intelligent inventory optimization, real-time personalization at scale, and automated returns processing that reduces costs and drives revenue."
+>
+  <Navigation />
+
+  <!-- Hero -->
+  <section class="pt-24 pb-20 bg-ibm-gray-100 relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute top-0 right-0 w-1/2 h-full opacity-5"
+        style="background: linear-gradient(135deg, #8a3ffc 0%, transparent 70%);">
+      </div>
+      <div class="absolute top-0 right-0 w-px h-full bg-ibm-purple/20"></div>
+    </div>
+    <div class="max-w-8xl mx-auto px-6 lg:px-8 pt-8 relative">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-3 mb-6">
+          <a href="/" class="text-xs text-ibm-gray-50 hover:text-ibm-gray-30 transition-colors">Mithra</a>
+          <span class="text-ibm-gray-70 text-xs" aria-hidden="true">/</span>
+          <a href="/#industries" class="text-xs text-ibm-gray-50 hover:text-ibm-gray-30 transition-colors">Industries</a>
+          <span class="text-ibm-gray-70 text-xs" aria-hidden="true">/</span>
+          <span class="text-xs text-ibm-gray-40">Retail & Commerce</span>
+        </div>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-ibm-purple/20 border border-ibm-purple/30 rounded-full mb-6">
+          <svg class="w-3.5 h-3.5 text-ibm-purple" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+          </svg>
+          <span class="text-xs font-medium text-ibm-purple tracking-wider uppercase">Retail & Commerce</span>
+        </div>
+        <h1 class="text-5xl lg:text-6xl font-light text-white mb-6 leading-tight">
+          The right product, the right customer,<br/>
+          <span class="font-semibold" style="color: #8a3ffc;">at exactly the right moment.</span>
+        </h1>
+        <p class="text-xl text-ibm-gray-30 leading-relaxed max-w-2xl mb-10">
+          Mithra helps retailers and commerce operators optimize inventory across every channel, personalize at true 1:1 scale, and automate returns operations — turning operational cost into competitive advantage.
+        </p>
+        <div class="flex flex-wrap items-center gap-4">
+          <a
+            href="/#contact"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-ibm-blue text-white font-medium rounded hover:bg-ibm-blue-hover transition-colors duration-150"
+          >
+            Schedule a Demo
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+          <a
+            href="/#solutions"
+            class="inline-flex items-center gap-2 px-6 py-3 text-ibm-gray-30 border border-ibm-gray-70 rounded hover:border-ibm-gray-40 hover:text-white transition-colors duration-150"
+          >
+            View Platform Overview
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Challenges -->
+  <section class="py-20 bg-white">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8">
+      <div class="mb-14">
+        <p class="text-sm font-medium text-ibm-purple tracking-wider uppercase mb-3">Challenges We Solve</p>
+        <h2 class="text-3xl font-light text-ibm-gray-100 max-w-2xl">
+          The inventory, personalization, and returns problems costing retailers margin every day
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        {challenges.map((challenge) => (
+          <div class="border border-ibm-gray-20 rounded-lg p-8 hover:border-ibm-purple hover:shadow-ibm-lg transition-all duration-300 group">
+            <div class="text-xs font-medium text-ibm-purple tracking-widest mb-4 font-mono">{challenge.number}</div>
+            <h3 class="text-xl font-semibold text-ibm-gray-100 mb-4 group-hover:text-ibm-purple transition-colors">{challenge.title}</h3>
+            <p class="text-sm text-ibm-gray-70 leading-relaxed">{challenge.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Solutions -->
+  <section class="py-20 bg-ibm-gray-10">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8">
+      <div class="mb-14">
+        <p class="text-sm font-medium text-ibm-purple tracking-wider uppercase mb-3">Our Solutions</p>
+        <h2 class="text-3xl font-light text-ibm-gray-100 max-w-2xl">
+          AI built for the speed and complexity of modern retail
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8">
+        {solutions.map((solution) => (
+          <div class="bg-white border border-ibm-gray-20 rounded-lg p-8 flex gap-6 hover:border-ibm-purple hover:shadow-ibm-md transition-all duration-300">
+            <div class="flex-shrink-0 w-12 h-12 bg-ibm-purple/10 rounded-lg flex items-center justify-center" aria-hidden="true">
+              <svg class="w-6 h-6 text-ibm-purple" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d={solution.icon}/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-ibm-gray-100 mb-2">{solution.title}</h3>
+              <p class="text-sm text-ibm-gray-70 leading-relaxed">{solution.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="py-20 bg-ibm-blue">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8">
+      <p class="text-sm font-medium text-ibm-blue-light tracking-wider uppercase mb-12 text-center">Commerce Results</p>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        {stats.map((stat) => (
+          <div class="text-center">
+            <div class="text-4xl lg:text-5xl font-light text-white mb-2">{stat.value}</div>
+            <div class="text-sm text-ibm-blue-light">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-ibm-gray-100">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+      <p class="text-sm font-medium text-ibm-purple tracking-wider uppercase mb-4">Get Started</p>
+      <h2 class="text-4xl font-light text-white mb-4">
+        Ready to turn your commerce data into a growth engine?
+      </h2>
+      <p class="text-ibm-gray-30 text-lg mb-10 max-w-2xl mx-auto">
+        Our retail team will audit your current inventory performance, personalization approach, and returns workflow — then show you where Mithra creates the biggest and fastest impact on revenue and margin.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a
+          href="/#contact"
+          class="inline-flex items-center gap-2 px-8 py-4 bg-ibm-blue text-white font-medium rounded hover:bg-ibm-blue-hover transition-colors duration-150 text-base"
+        >
+          Start Free Consultation
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+        <a
+          href="/industries/finance"
+          class="inline-flex items-center gap-2 px-6 py-4 text-ibm-gray-30 border border-ibm-gray-70 rounded hover:border-ibm-gray-40 hover:text-white transition-colors duration-150 text-base"
+        >
+          Explore Financial Services Solutions
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

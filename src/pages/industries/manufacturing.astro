@@ -1,0 +1,207 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+
+const challenges = [
+  {
+    number: '01',
+    title: 'Unplanned Downtime',
+    description: 'Equipment failures that could have been predicted cost manufacturers an average of $260,000 per hour of unplanned downtime. Reactive maintenance schedules leave production lines vulnerable to cascading failures that no amount of spare parts inventory can fully buffer.',
+  },
+  {
+    number: '02',
+    title: 'Quality Control Inconsistency',
+    description: 'Manual visual inspection is slow, fatigue-dependent, and inconsistent across shifts. Defects that pass inspection reach customers, drive warranty costs, and damage brand reputation — while false positives halt lines and waste perfectly good product.',
+  },
+  {
+    number: '03',
+    title: 'Supply Chain Visibility Gaps',
+    description: 'Manufacturers operating multi-tier supplier networks often lack real-time visibility below tier one. Disruptions at tier two or three arrive as surprises, triggering costly emergency procurement, production halts, and missed customer delivery commitments.',
+  },
+];
+
+const solutions = [
+  {
+    icon: 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
+    title: 'Predictive Maintenance AI',
+    description: 'Mithra ingests vibration, temperature, acoustic, and operational sensor data from your existing equipment to model failure probability in real time. Maintenance teams receive prioritized alerts days before failures occur — not minutes after.',
+  },
+  {
+    icon: 'M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z',
+    title: 'Computer Vision Quality Control',
+    description: 'High-speed camera arrays powered by Mithra\'s vision models inspect every unit at line speed — detecting surface defects, dimensional deviations, assembly errors, and contamination with 99.2% accuracy across all shift conditions.',
+  },
+  {
+    icon: 'M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3',
+    title: 'Supply Chain Intelligence',
+    description: 'Real-time visibility across your multi-tier supplier network, with AI-driven risk scoring for each node. Disruptions at any tier surface automatically with recommended mitigation actions — before they impact your production schedule.',
+  },
+  {
+    icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',
+    title: 'OEE & Production Analytics',
+    description: 'Unified overall equipment effectiveness dashboards aggregate availability, performance, and quality data from every line in real time. Operations managers get the visibility they need to make data-driven scheduling decisions every shift.',
+  },
+];
+
+const stats = [
+  { value: '45%', label: 'Reduction in unplanned downtime' },
+  { value: '99.2%', label: 'Quality defect detection accuracy' },
+  { value: 'Real-time', label: 'Supply chain visibility' },
+  { value: '3.2x', label: 'ROI within first 12 months' },
+];
+---
+
+<Layout
+  title="Manufacturing AI Solutions — Mithra"
+  description="Mithra delivers industrial AI for manufacturing: predictive maintenance, computer vision quality control, and supply chain intelligence for enterprise production environments."
+>
+  <Navigation />
+
+  <!-- Hero -->
+  <section class="pt-24 pb-20 bg-ibm-gray-100 relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute top-0 right-0 w-1/2 h-full opacity-5"
+        style="background: linear-gradient(135deg, #ff832b 0%, transparent 70%);">
+      </div>
+      <div class="absolute top-0 left-0 w-px h-full bg-ibm-orange/20"></div>
+    </div>
+    <div class="max-w-8xl mx-auto px-6 lg:px-8 pt-8 relative">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-3 mb-6">
+          <a href="/" class="text-xs text-ibm-gray-50 hover:text-ibm-gray-30 transition-colors">Mithra</a>
+          <span class="text-ibm-gray-70 text-xs" aria-hidden="true">/</span>
+          <a href="/#industries" class="text-xs text-ibm-gray-50 hover:text-ibm-gray-30 transition-colors">Industries</a>
+          <span class="text-ibm-gray-70 text-xs" aria-hidden="true">/</span>
+          <span class="text-xs text-ibm-gray-40">Manufacturing</span>
+        </div>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-ibm-orange/20 border border-ibm-orange/30 rounded-full mb-6">
+          <svg class="w-3.5 h-3.5 text-ibm-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+          <span class="text-xs font-medium text-ibm-orange tracking-wider uppercase">Manufacturing</span>
+        </div>
+        <h1 class="text-5xl lg:text-6xl font-light text-white mb-6 leading-tight">
+          Keep production running.<br/>
+          <span class="font-semibold" style="color: #ff832b;">Predict before it breaks.</span>
+        </h1>
+        <p class="text-xl text-ibm-gray-30 leading-relaxed max-w-2xl mb-10">
+          Mithra brings predictive intelligence to the factory floor — minimizing unplanned downtime, eliminating quality escapes, and giving your supply chain team real-time visibility across every supplier tier.
+        </p>
+        <div class="flex flex-wrap items-center gap-4">
+          <a
+            href="/#contact"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-ibm-blue text-white font-medium rounded hover:bg-ibm-blue-hover transition-colors duration-150"
+          >
+            Schedule a Demo
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+          <a
+            href="/#solutions"
+            class="inline-flex items-center gap-2 px-6 py-3 text-ibm-gray-30 border border-ibm-gray-70 rounded hover:border-ibm-gray-40 hover:text-white transition-colors duration-150"
+          >
+            View Platform Overview
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Challenges -->
+  <section class="py-20 bg-white">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8">
+      <div class="mb-14">
+        <p class="text-sm font-medium text-ibm-orange tracking-wider uppercase mb-3">Challenges We Solve</p>
+        <h2 class="text-3xl font-light text-ibm-gray-100 max-w-2xl">
+          The operational gaps eating into production efficiency and margins
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        {challenges.map((challenge) => (
+          <div class="border border-ibm-gray-20 rounded-lg p-8 hover:border-ibm-orange hover:shadow-ibm-lg transition-all duration-300 group">
+            <div class="text-xs font-medium text-ibm-orange tracking-widest mb-4 font-mono">{challenge.number}</div>
+            <h3 class="text-xl font-semibold text-ibm-gray-100 mb-4 group-hover:text-ibm-orange transition-colors">{challenge.title}</h3>
+            <p class="text-sm text-ibm-gray-70 leading-relaxed">{challenge.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Solutions -->
+  <section class="py-20 bg-ibm-gray-10">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8">
+      <div class="mb-14">
+        <p class="text-sm font-medium text-ibm-orange tracking-wider uppercase mb-3">Our Solutions</p>
+        <h2 class="text-3xl font-light text-ibm-gray-100 max-w-2xl">
+          Industrial AI built for the demands of continuous production
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8">
+        {solutions.map((solution) => (
+          <div class="bg-white border border-ibm-gray-20 rounded-lg p-8 flex gap-6 hover:border-ibm-orange hover:shadow-ibm-md transition-all duration-300">
+            <div class="flex-shrink-0 w-12 h-12 bg-ibm-orange/10 rounded-lg flex items-center justify-center" aria-hidden="true">
+              <svg class="w-6 h-6 text-ibm-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d={solution.icon}/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-ibm-gray-100 mb-2">{solution.title}</h3>
+              <p class="text-sm text-ibm-gray-70 leading-relaxed">{solution.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="py-20 bg-ibm-blue">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8">
+      <p class="text-sm font-medium text-ibm-blue-light tracking-wider uppercase mb-12 text-center">Results on the Factory Floor</p>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        {stats.map((stat) => (
+          <div class="text-center">
+            <div class="text-4xl lg:text-5xl font-light text-white mb-2">{stat.value}</div>
+            <div class="text-sm text-ibm-blue-light">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-ibm-gray-100">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+      <p class="text-sm font-medium text-ibm-orange tracking-wider uppercase mb-4">Get Started</p>
+      <h2 class="text-4xl font-light text-white mb-4">
+        Ready to predict failures before they happen?
+      </h2>
+      <p class="text-ibm-gray-30 text-lg mb-10 max-w-2xl mx-auto">
+        Our manufacturing team will analyze your current OEE, downtime patterns, and quality escape rates — then show you exactly where Mithra eliminates cost and stops the line from stopping.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a
+          href="/#contact"
+          class="inline-flex items-center gap-2 px-8 py-4 bg-ibm-blue text-white font-medium rounded hover:bg-ibm-blue-hover transition-colors duration-150 text-base"
+        >
+          Start Free Consultation
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+        <a
+          href="/industries/logistics"
+          class="inline-flex items-center gap-2 px-6 py-4 text-ibm-gray-30 border border-ibm-gray-70 rounded hover:border-ibm-gray-40 hover:text-white transition-colors duration-150 text-base"
+        >
+          Explore Logistics Solutions
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

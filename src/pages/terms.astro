@@ -1,0 +1,141 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Terms of Service — Mithra" description="Read the Terms of Service governing use of the Mithra enterprise AI platform.">
+  <Navigation />
+
+  <!-- Dark header -->
+  <section class="pt-24 pb-12 bg-ibm-gray-100">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8 pt-8">
+      <p class="text-ibm-blue text-sm font-medium tracking-wider uppercase mb-3">Legal</p>
+      <h1 class="text-4xl font-light text-white mb-3">Terms of Service</h1>
+      <p class="text-ibm-gray-40 text-sm">Last updated: May 27, 2026</p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="py-16 bg-white">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8">
+      <div class="max-w-3xl">
+
+        <p class="text-ibm-gray-70 leading-relaxed mb-4">
+          These Terms of Service ("Terms") constitute a legally binding agreement between you or the organization you represent ("Customer") and Mithra Technologies S.A. de C.V. ("Mithra," "we," "us," or "our"), governing access to and use of Mithra's enterprise AI platform and related services ("Services").
+        </p>
+        <p class="text-ibm-gray-70 leading-relaxed mb-4">
+          Please read these Terms carefully before using our Services. By clicking "I Agree," signing an Order Form that references these Terms, or otherwise accessing or using the Services, you agree to be bound by them.
+        </p>
+
+        <h2 class="text-xl font-semibold text-ibm-gray-100 mt-10 mb-4">1. Acceptance of Terms</h2>
+        <p class="text-ibm-gray-70 leading-relaxed mb-4">
+          Use of the Services is conditioned on your acceptance of, and compliance with, these Terms. If you do not agree to any part of these Terms, you may not access or use the Services. If you are entering into these Terms on behalf of an organization, you represent and warrant that you have authority to bind that organization.
+        </p>
+        <p class="text-ibm-gray-70 leading-relaxed mb-4">
+          These Terms supersede any prior agreements or representations (whether oral or written) between the parties regarding the subject matter herein, unless the parties have executed a separate Master Services Agreement, in which case that agreement governs.
+        </p>
+
+        <h2 class="text-xl font-semibold text-ibm-gray-100 mt-10 mb-4">2. Description of Services</h2>
+        <p class="text-ibm-gray-70 leading-relaxed mb-4">
+          Mithra provides an enterprise AI platform that enables organizations to deploy, manage, and scale AI-powered workflows, automation pipelines, and analytics across their operations. The specific features, data limits, and support levels available to you are determined by the subscription plan set out in your Order Form.
+        </p>
+        <p class="text-ibm-gray-70 leading-relaxed mb-4">
+          We reserve the right to modify, suspend, or discontinue any feature of the Services at any time, provided that we give reasonable notice for material changes affecting paid subscribers.
+        </p>
+
+        <h2 class="text-xl font-semibold text-ibm-gray-100 mt-10 mb-4">3. Account Responsibilities</h2>
+        <p class="text-ibm-gray-70 leading-relaxed mb-4">You are responsible for:</p>
+        <ul class="list-disc pl-5 space-y-2 text-ibm-gray-70 mb-4">
+          <li>Maintaining the confidentiality of your account credentials and promptly notifying us of any unauthorized access.</li>
+          <li>All activities that occur under your account, whether authorized by you or not.</li>
+          <li>Ensuring that all users within your organization who access the Services comply with these Terms.</li>
+          <li>Providing accurate, current, and complete account information and keeping it updated.</li>
+        </ul>
+
+        <h2 class="text-xl font-semibold text-ibm-gray-100 mt-10 mb-4">4. Permitted Use and Restrictions</h2>
+        <p class="text-ibm-gray-70 leading-relaxed mb-4">You may use the Services solely for your internal business purposes in accordance with these Terms and applicable law. You must not:</p>
+        <ul class="list-disc pl-5 space-y-2 text-ibm-gray-70 mb-4">
+          <li>Reverse engineer, decompile, disassemble, or attempt to derive the source code of the platform or any underlying AI models.</li>
+          <li>Resell, sublicense, or otherwise provide access to the Services to third parties without our prior written consent.</li>
+          <li>Use the Services to process data in violation of applicable privacy laws or in a manner that infringes third-party rights.</li>
+          <li>Attempt to gain unauthorized access to any system or network connected to the Services.</li>
+          <li>Use the Services to develop a competing product or service.</li>
+          <li>Remove or obscure any proprietary notices on the platform.</li>
+        </ul>
+
+        <h2 class="text-xl font-semibold text-ibm-gray-100 mt-10 mb-4">5. Service Level Agreement (SLA)</h2>
+        <p class="text-ibm-gray-70 leading-relaxed mb-4">
+          Mithra targets <strong class="text-ibm-gray-100">99.9% monthly uptime</strong> for the core platform API and dashboard, measured on a rolling 30-day basis and excluding scheduled maintenance windows (announced at least 48 hours in advance).
+        </p>
+        <p class="text-ibm-gray-70 leading-relaxed mb-4">
+          In the event uptime falls below 99.9% in any calendar month, eligible Customers may claim service credits as follows:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-ibm-gray-70 mb-4">
+          <li>99.0%–99.9% uptime: 10% credit of monthly subscription fee.</li>
+          <li>95.0%–99.0% uptime: 25% credit of monthly subscription fee.</li>
+          <li>Below 95.0% uptime: 50% credit of monthly subscription fee.</li>
+        </ul>
+        <p class="text-ibm-gray-70 leading-relaxed mb-4">
+          Credits must be requested within 30 days of the incident and are applied to future invoices. Credits are your sole remedy for uptime failures.
+        </p>
+
+        <h2 class="text-xl font-semibold text-ibm-gray-100 mt-10 mb-4">6. Payment Terms</h2>
+        <p class="text-ibm-gray-70 leading-relaxed mb-4">
+          Subscriptions are available on annual or monthly billing cycles as specified in your Order Form. All fees are quoted in USD and are exclusive of applicable taxes (including VAT/IVA), which are your responsibility.
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-ibm-gray-70 mb-4">
+          <li><strong class="text-ibm-gray-100">Auto-renewal:</strong> Subscriptions automatically renew at the end of each billing cycle unless cancelled at least 30 days before the renewal date.</li>
+          <li><strong class="text-ibm-gray-100">Late payments:</strong> Overdue amounts accrue interest at 1.5% per month (or the maximum rate permitted by law, whichever is lower). We reserve the right to suspend access for accounts more than 30 days past due.</li>
+          <li><strong class="text-ibm-gray-100">Refunds:</strong> Fees are non-refundable except as expressly set out in these Terms or required by applicable law.</li>
+        </ul>
+
+        <h2 class="text-xl font-semibold text-ibm-gray-100 mt-10 mb-4">7. Intellectual Property</h2>
+        <p class="text-ibm-gray-70 leading-relaxed mb-4">
+          <strong class="text-ibm-gray-100">Mithra's IP:</strong> All rights, title, and interest in the platform, underlying AI models, algorithms, software, documentation, and all related intellectual property belong exclusively to Mithra. These Terms do not grant you any ownership interest in the Services.
+        </p>
+        <p class="text-ibm-gray-70 leading-relaxed mb-4">
+          <strong class="text-ibm-gray-100">Your Data:</strong> You retain full ownership of all data, content, and materials you submit to the platform ("Customer Data"). You grant Mithra a limited, non-exclusive license to process Customer Data solely to provide and improve the Services for your account. We do not use Customer Data to train general-purpose AI models.
+        </p>
+        <p class="text-ibm-gray-70 leading-relaxed mb-4">
+          <strong class="text-ibm-gray-100">Feedback:</strong> If you provide feedback or suggestions about the Services, Mithra may use that feedback without restriction or compensation to you.
+        </p>
+
+        <h2 class="text-xl font-semibold text-ibm-gray-100 mt-10 mb-4">8. Limitation of Liability</h2>
+        <p class="text-ibm-gray-70 leading-relaxed mb-4">
+          TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, MITHRA'S TOTAL CUMULATIVE LIABILITY TO YOU FOR ALL CLAIMS ARISING OUT OF OR RELATED TO THESE TERMS OR THE SERVICES SHALL NOT EXCEED THE FEES YOU PAID TO MITHRA IN THE TWELVE (12) MONTHS PRECEDING THE CLAIM.
+        </p>
+        <p class="text-ibm-gray-70 leading-relaxed mb-4">
+          IN NO EVENT SHALL MITHRA BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING LOST PROFITS OR LOST DATA, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+        </p>
+
+        <h2 class="text-xl font-semibold text-ibm-gray-100 mt-10 mb-4">9. Governing Law</h2>
+        <p class="text-ibm-gray-70 leading-relaxed mb-4">
+          These Terms are governed by and construed in accordance with the laws of Mexico City, Mexico, without regard to conflict-of-law principles. Both parties submit to the exclusive jurisdiction of the courts located in Mexico City, Mexico for any disputes arising under these Terms.
+        </p>
+
+        <h2 class="text-xl font-semibold text-ibm-gray-100 mt-10 mb-4">10. Dispute Resolution</h2>
+        <p class="text-ibm-gray-70 leading-relaxed mb-4">
+          Before initiating formal legal proceedings, either party must provide written notice of the dispute and allow 30 days for good-faith negotiation. If the dispute is not resolved through negotiation, the parties agree to attempt mediation before a mutually agreed mediator in Mexico City before resorting to litigation.
+        </p>
+
+        <h2 class="text-xl font-semibold text-ibm-gray-100 mt-10 mb-4">11. Changes to Terms</h2>
+        <p class="text-ibm-gray-70 leading-relaxed mb-4">
+          We may update these Terms from time to time. For material changes, we will provide at least 30 days' advance notice via email and/or a prominent notice in the platform. Your continued use of the Services after the effective date of any changes constitutes your acceptance of the revised Terms. If you do not agree to the revised Terms, you must stop using the Services before they take effect.
+        </p>
+
+        <h2 class="text-xl font-semibold text-ibm-gray-100 mt-10 mb-4">12. Contact</h2>
+        <p class="text-ibm-gray-70 leading-relaxed mb-4">
+          For legal inquiries, contact our Legal Team:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-ibm-gray-70 mb-4">
+          <li>Email: <a href="mailto:legal@mithra.ai" class="text-ibm-blue hover:underline">legal@mithra.ai</a></li>
+          <li>Mail: Mithra Technologies S.A. de C.V., Paseo de la Reforma 250, Mexico City, Mexico</li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

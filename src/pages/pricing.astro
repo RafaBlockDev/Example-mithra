@@ -1,0 +1,152 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+const plans = [
+  {
+    name: 'Starter',
+    price: '$2,500',
+    period: '/month',
+    description: 'For teams beginning their automation journey.',
+    cta: 'Start Free Trial',
+    ctaHref: '/#contact',
+    featured: false,
+    features: [
+      'Up to 10 automated workflows',
+      '50,000 executions/month',
+      '3 integrations included',
+      'Standard support (email)',
+      'Basic analytics dashboard',
+      '99.5% uptime SLA',
+      '1 workspace',
+    ],
+    notIncluded: ['Custom AI model training', 'SSO & SAML', 'Dedicated CSM', 'On-premise deployment'],
+  },
+  {
+    name: 'Professional',
+    price: '$8,500',
+    period: '/month',
+    description: 'For growing enterprises scaling automation across departments.',
+    cta: 'Start Free Trial',
+    ctaHref: '/#contact',
+    featured: true,
+    features: [
+      'Unlimited automated workflows',
+      '500,000 executions/month',
+      '25 integrations included',
+      'Priority support (email + chat)',
+      'Advanced analytics & reporting',
+      '99.9% uptime SLA',
+      'Up to 10 workspaces',
+      'Custom AI model fine-tuning',
+      'SSO / SAML integration',
+      'Role-based access control',
+    ],
+    notIncluded: ['Dedicated CSM', 'On-premise deployment'],
+  },
+  {
+    name: 'Enterprise',
+    price: 'Custom',
+    period: '',
+    description: 'For global organizations with mission-critical requirements.',
+    cta: 'Contact Sales',
+    ctaHref: '/#contact',
+    featured: false,
+    features: [
+      'Unlimited workflows & executions',
+      '200+ integrations',
+      'Dedicated Customer Success Manager',
+      '24/7 phone + SLA-backed support',
+      'Executive reporting & QBRs',
+      '99.99% uptime SLA',
+      'Unlimited workspaces',
+      'Custom AI models + MLOps',
+      'SSO, SAML, MFA enforced',
+      'On-premise or private cloud option',
+      'Custom data residency',
+      'SOC 2 audit artifacts on request',
+    ],
+    notIncluded: [],
+  },
+];
+---
+
+<Layout title="Pricing — Mithra Platform" description="Transparent pricing for enterprise AI automation. Starter, Professional, and Enterprise plans. Free trial available.">
+  <Navigation />
+
+  <section class="pt-24 pb-16 bg-ibm-gray-100">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8 pt-8 text-center">
+      <div class="inline-block px-3 py-1 bg-ibm-blue/20 border border-ibm-blue/30 rounded-full mb-6">
+        <span class="text-xs font-medium text-ibm-blue-light tracking-wider uppercase">Pricing</span>
+      </div>
+      <h1 class="text-5xl font-light text-white mb-6">
+        Transparent pricing, <span class="font-semibold text-ibm-blue">no surprises</span>
+      </h1>
+      <p class="text-xl text-ibm-gray-30 leading-relaxed max-w-2xl mx-auto">
+        All plans include a 30-day free trial. No credit card required to start.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-ibm-gray-10">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8">
+      <div class="grid lg:grid-cols-3 gap-6">
+        {plans.map(plan => (
+          <div class={`bg-white rounded-lg flex flex-col ${plan.featured ? 'border-2 border-ibm-blue shadow-ibm-xl relative' : 'border border-ibm-gray-20'}`}>
+            {plan.featured && (
+              <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-ibm-blue text-white text-xs font-medium px-4 py-1 rounded-full">
+                Most Popular
+              </div>
+            )}
+            <div class="p-8 border-b border-ibm-gray-20">
+              <h2 class="text-lg font-semibold text-ibm-gray-100 mb-1">{plan.name}</h2>
+              <p class="text-sm text-ibm-gray-60 mb-4">{plan.description}</p>
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl font-light text-ibm-gray-100">{plan.price}</span>
+                {plan.period && <span class="text-ibm-gray-60 text-sm">{plan.period}</span>}
+              </div>
+            </div>
+            <div class="p-8 flex-grow">
+              <ul class="space-y-3 mb-6">
+                {plan.features.map(feature => (
+                  <li class="flex items-start gap-2.5 text-sm text-ibm-gray-70">
+                    <svg class="w-4 h-4 text-ibm-blue flex-shrink-0 mt-0.5" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>
+                    {feature}
+                  </li>
+                ))}
+                {plan.notIncluded.map(feature => (
+                  <li class="flex items-start gap-2.5 text-sm text-ibm-gray-40">
+                    <svg class="w-4 h-4 text-ibm-gray-30 flex-shrink-0 mt-0.5" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4.646 4.646a.5.5 0 01.708 0L8 7.293l2.646-2.647a.5.5 0 01.708.708L8.707 8l2.647 2.646a.5.5 0 01-.708.708L8 8.707l-2.646 2.647a.5.5 0 01-.708-.708L7.293 8 4.646 5.354a.5.5 0 010-.708z"/></svg>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div class="p-8 pt-0">
+              <a href={plan.ctaHref} class={`block w-full text-center px-6 py-3 font-medium rounded transition-colors duration-150 ${plan.featured ? 'bg-ibm-blue text-white hover:bg-ibm-blue-hover' : 'bg-ibm-gray-10 text-ibm-gray-100 hover:bg-ibm-gray-20 border border-ibm-gray-20'}`}>
+                {plan.cta}
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-center text-sm text-ibm-gray-60 mt-8">
+        All prices in USD. Annual billing available at 20% discount. Taxes may apply.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-ibm-blue">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-light text-white mb-4">Not sure which plan is right?</h2>
+      <p class="text-ibm-blue-light mb-8">Talk to our team. We'll recommend the right plan based on your use case and team size.</p>
+      <a href="/#contact" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-ibm-blue font-medium rounded hover:bg-ibm-gray-10 transition-colors">
+        Schedule a consultation
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
