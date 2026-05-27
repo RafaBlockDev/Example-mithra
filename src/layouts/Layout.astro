@@ -1,13 +1,24 @@
 ---
+const SITE_URL = 'https://mithra.ai';
+
 export interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
+  ogType?: string;
+  canonicalUrl?: string;
 }
 
 const {
   title = 'Mithra — Enterprise AI Solutions for Global Operations',
   description = 'Mithra delivers enterprise-grade AI and software automation solutions. Streamline operations, accelerate growth, and scale intelligently across global markets.',
+  ogImage = '/og-image.jpg',
+  ogType = 'website',
+  canonicalUrl,
 } = Astro.props;
+
+const canonical = canonicalUrl ?? (SITE_URL + Astro.url.pathname);
+const ogImageAbsolute = SITE_URL + ogImage;
 ---
 
 <!doctype html>
@@ -15,15 +26,46 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary meta -->
+    <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="author" content="Mithra" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.svg" />
     <meta name="theme-color" content="#0f62fe" />
+
+    <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageAbsolute} />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="853" />
+    <meta property="og:image:alt" content="Mithra — Enterprise AI Solutions" />
+    <meta property="og:site_name" content="Mithra" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@mithraai" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageAbsolute} />
+    <meta name="twitter:image:alt" content="Mithra — Enterprise AI Solutions" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    <title>{title}</title>
     <style is:global>
       *,
       *::before,

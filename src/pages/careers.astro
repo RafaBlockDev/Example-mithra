@@ -4,16 +4,16 @@ import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 
 const openRoles = [
-  { title: 'Senior AI Engineer', team: 'Engineering', location: 'Mexico City / Remote', type: 'Full-time' },
-  { title: 'Platform Solutions Architect', team: 'Engineering', location: 'Austin, TX', type: 'Full-time' },
-  { title: 'Enterprise Account Executive', team: 'Sales', location: 'Austin, TX', type: 'Full-time' },
-  { title: 'ML Operations Engineer', team: 'Engineering', location: 'Remote (LATAM)', type: 'Full-time' },
-  { title: 'Product Manager, Integrations', team: 'Product', location: 'Mexico City', type: 'Full-time' },
-  { title: 'Customer Success Manager', team: 'Client Success', location: 'Austin, TX / Remote', type: 'Full-time' },
+  { title: 'Senior AI Engineer', team: 'Engineering', location: 'Worldwide / Remote', type: 'Full-time' },
+  { title: 'Platform Solutions Architect', team: 'Engineering', location: 'Austin, TX / Remote', type: 'Full-time' },
+  { title: 'Enterprise Account Executive', team: 'Sales', location: 'Austin, TX / Remote', type: 'Full-time' },
+  { title: 'ML Operations Engineer', team: 'Engineering', location: 'Worldwide / Remote', type: 'Full-time' },
+  { title: 'Product Manager, Integrations', team: 'Product', location: 'Worldwide / Remote', type: 'Full-time' },
+  { title: 'Customer Success Manager', team: 'Client Success', location: 'Worldwide / Remote', type: 'Full-time' },
 ];
 
 const benefits = [
-  { icon: '🌎', title: 'Remote-first culture', description: 'Work from anywhere in LATAM or USA. Optional offices in Mexico City and Austin.' },
+  { icon: '🌎', title: 'Remote-first culture', description: 'Work from anywhere in the world. Optional offices in Mexico City and Austin.' },
   { icon: '📈', title: 'Equity participation', description: 'All full-time employees participate in our employee stock option plan.' },
   { icon: '🎓', title: 'Learning budget', description: 'USD $2,000/year for conferences, courses, and certifications.' },
   { icon: '🏥', title: 'Health coverage', description: 'Comprehensive medical, dental, and vision for you and your dependents.' },
@@ -64,14 +64,23 @@ const benefits = [
               <h3 class="font-semibold text-ibm-gray-100 group-hover:text-ibm-blue transition-colors">{role.title}</h3>
               <div class="flex flex-wrap gap-3 mt-2">
                 <span class="text-xs text-ibm-gray-60 bg-ibm-gray-10 px-2 py-0.5 rounded">{role.team}</span>
-                <span class="text-xs text-ibm-gray-60">{role.location}</span>
+                <span class="text-xs text-ibm-gray-60 flex items-center gap-1">
+                  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C5.243 0 3 2.243 3 5c0 3.75 5 11 5 11s5-7.25 5-11c0-2.757-2.243-5-5-5zm0 7a2 2 0 110-4 2 2 0 010 4z"/></svg>
+                  {role.location}
+                </span>
                 <span class="text-xs text-ibm-gray-60">{role.type}</span>
               </div>
             </div>
-            <a href="/#contact" class="flex-shrink-0 inline-flex items-center gap-1.5 px-4 py-2 text-sm text-ibm-blue border border-ibm-blue rounded hover:bg-ibm-blue hover:text-white transition-colors duration-150">
-              Apply
+            <button
+              class="apply-btn flex-shrink-0 inline-flex items-center gap-1.5 px-4 py-2 text-sm text-ibm-blue border border-ibm-blue rounded hover:bg-ibm-blue hover:text-white transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-ibm-blue focus:ring-offset-2"
+              data-role={role.title}
+              data-team={role.team}
+              type="button"
+              aria-haspopup="dialog"
+            >
+              Apply Now
               <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M4.5 11.5A.5.5 0 015 11h5.793L5.146 5.354a.5.5 0 11.708-.708l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 11.5H5a.5.5 0 01-.5-.5z"/></svg>
-            </a>
+            </button>
           </div>
         ))}
       </div>
@@ -100,11 +109,388 @@ const benefits = [
     <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
       <h2 class="text-3xl font-light text-white mb-4">Don't see your role?</h2>
       <p class="text-ibm-blue-light mb-8">Send us your CV and we'll keep you in mind for future openings.</p>
-      <a href="/#contact" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-ibm-blue font-medium rounded hover:bg-ibm-gray-10 transition-colors duration-150">
-        Get in touch
-      </a>
+      <button
+        class="apply-btn inline-flex items-center gap-2 px-6 py-3 bg-white text-ibm-blue font-medium rounded hover:bg-ibm-gray-10 transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-ibm-blue"
+        data-role="General Application"
+        data-team="Open"
+        type="button"
+        aria-haspopup="dialog"
+      >
+        Send your CV
+      </button>
     </div>
   </section>
 
   <Footer />
 </Layout>
+
+<!-- ── Apply Modal ───────────────────────────────────────────────── -->
+<div
+  id="apply-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modal-title"
+  class="fixed inset-0 z-[100] hidden items-center justify-center p-4"
+>
+  <!-- Backdrop -->
+  <div id="modal-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm" aria-hidden="true"></div>
+
+  <!-- Panel -->
+  <div class="relative w-full max-w-lg bg-white rounded-lg shadow-ibm-xl overflow-hidden flex flex-col max-h-[90vh]">
+
+    <!-- Header -->
+    <div class="flex items-start justify-between px-6 pt-6 pb-4 border-b border-ibm-gray-20 flex-shrink-0">
+      <div>
+        <p class="text-xs font-medium text-ibm-blue tracking-wider uppercase mb-1">Apply Now</p>
+        <h2 id="modal-title" class="text-xl font-semibold text-ibm-gray-100"></h2>
+        <p id="modal-team" class="text-sm text-ibm-gray-60 mt-0.5"></p>
+      </div>
+      <button
+        id="modal-close"
+        type="button"
+        class="text-ibm-gray-50 hover:text-ibm-gray-100 transition-colors p-1 rounded focus:outline-none focus:ring-2 focus:ring-ibm-blue"
+        aria-label="Close application form"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Form (scrollable) -->
+    <div class="overflow-y-auto flex-grow">
+
+      <!-- Application Form -->
+      <form id="apply-form" class="px-6 py-6 space-y-5" novalidate>
+
+        <!-- Full name -->
+        <div>
+          <label for="app-name" class="block text-sm font-medium text-ibm-gray-100 mb-1.5">
+            Full name <span class="text-ibm-red" aria-hidden="true">*</span>
+          </label>
+          <input
+            type="text"
+            id="app-name"
+            name="name"
+            required
+            autocomplete="name"
+            placeholder="Jane Smith"
+            class="w-full px-3 py-2.5 border border-ibm-gray-20 rounded text-sm text-ibm-gray-100 placeholder-ibm-gray-40 focus:outline-none focus:border-ibm-blue focus:ring-1 focus:ring-ibm-blue transition-colors"
+          />
+          <p class="hidden mt-1 text-xs text-ibm-red" data-error="app-name">Please enter your full name.</p>
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label for="app-email" class="block text-sm font-medium text-ibm-gray-100 mb-1.5">
+            Email address <span class="text-ibm-red" aria-hidden="true">*</span>
+          </label>
+          <input
+            type="email"
+            id="app-email"
+            name="email"
+            required
+            autocomplete="email"
+            placeholder="jane@company.com"
+            class="w-full px-3 py-2.5 border border-ibm-gray-20 rounded text-sm text-ibm-gray-100 placeholder-ibm-gray-40 focus:outline-none focus:border-ibm-blue focus:ring-1 focus:ring-ibm-blue transition-colors"
+          />
+          <p class="hidden mt-1 text-xs text-ibm-red" data-error="app-email">Please enter a valid email address.</p>
+        </div>
+
+        <!-- CV Upload -->
+        <div>
+          <label class="block text-sm font-medium text-ibm-gray-100 mb-1.5">
+            CV / Resume <span class="text-ibm-red" aria-hidden="true">*</span>
+            <span class="font-normal text-ibm-gray-50 ml-1">(PDF or DOCX, max 10 MB)</span>
+          </label>
+          <div
+            id="drop-zone"
+            class="relative border-2 border-dashed border-ibm-gray-20 rounded-lg p-6 text-center cursor-pointer hover:border-ibm-blue transition-colors duration-200 focus-within:border-ibm-blue focus-within:ring-1 focus-within:ring-ibm-blue"
+          >
+            <input
+              type="file"
+              id="app-cv"
+              name="cv"
+              accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+              required
+              class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+              aria-label="Upload CV file"
+            />
+            <div id="drop-idle">
+              <svg class="w-8 h-8 text-ibm-gray-30 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+              </svg>
+              <p class="text-sm text-ibm-gray-60">Drag & drop your CV here, or <span class="text-ibm-blue font-medium">browse</span></p>
+            </div>
+            <div id="drop-selected" class="hidden items-center justify-center gap-2">
+              <svg class="w-5 h-5 text-ibm-blue flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/>
+              </svg>
+              <span id="drop-filename" class="text-sm font-medium text-ibm-gray-100 truncate max-w-xs"></span>
+              <svg class="w-4 h-4 text-ibm-green flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+          </div>
+          <p class="hidden mt-1 text-xs text-ibm-red" data-error="app-cv">Please upload your CV (PDF or DOCX, max 10 MB).</p>
+        </div>
+
+        <!-- About yourself -->
+        <div>
+          <label for="app-bio" class="block text-sm font-medium text-ibm-gray-100 mb-1.5">
+            Tell us about yourself <span class="text-ibm-red" aria-hidden="true">*</span>
+          </label>
+          <textarea
+            id="app-bio"
+            name="bio"
+            required
+            rows="4"
+            placeholder="Briefly describe your experience, what excites you about this role, and anything you'd like us to know..."
+            class="w-full px-3 py-2.5 border border-ibm-gray-20 rounded text-sm text-ibm-gray-100 placeholder-ibm-gray-40 focus:outline-none focus:border-ibm-blue focus:ring-1 focus:ring-ibm-blue transition-colors resize-none"
+          ></textarea>
+          <p class="hidden mt-1 text-xs text-ibm-red" data-error="app-bio">Please write a brief description (min. 50 characters).</p>
+        </div>
+
+        <!-- Social links -->
+        <div class="space-y-3">
+          <p class="text-sm font-medium text-ibm-gray-100">Profiles <span class="font-normal text-ibm-gray-50">(optional)</span></p>
+          <div>
+            <label for="app-linkedin" class="block text-xs text-ibm-gray-60 mb-1">LinkedIn</label>
+            <div class="relative">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 text-ibm-gray-40 text-xs">linkedin.com/in/</span>
+              <input
+                type="text"
+                id="app-linkedin"
+                name="linkedin"
+                placeholder="yourprofile"
+                class="w-full pl-28 pr-3 py-2.5 border border-ibm-gray-20 rounded text-sm text-ibm-gray-100 placeholder-ibm-gray-40 focus:outline-none focus:border-ibm-blue focus:ring-1 focus:ring-ibm-blue transition-colors"
+              />
+            </div>
+          </div>
+          <div>
+            <label for="app-portfolio" class="block text-xs text-ibm-gray-60 mb-1">Portfolio / Website / GitHub</label>
+            <input
+              type="url"
+              id="app-portfolio"
+              name="portfolio"
+              placeholder="https://yoursite.com"
+              class="w-full px-3 py-2.5 border border-ibm-gray-20 rounded text-sm text-ibm-gray-100 placeholder-ibm-gray-40 focus:outline-none focus:border-ibm-blue focus:ring-1 focus:ring-ibm-blue transition-colors"
+            />
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="flex items-center justify-between pt-2 border-t border-ibm-gray-10">
+          <button
+            type="button"
+            id="modal-cancel"
+            class="px-4 py-2.5 text-sm text-ibm-gray-70 hover:text-ibm-gray-100 transition-colors focus:outline-none focus:underline"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            id="submit-btn"
+            class="inline-flex items-center gap-2 px-5 py-2.5 bg-ibm-blue text-white text-sm font-medium rounded hover:bg-ibm-blue-hover transition-colors focus:outline-none focus:ring-2 focus:ring-ibm-blue focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
+          >
+            <span id="submit-label">Submit Application</span>
+            <svg id="submit-spinner" class="hidden w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"/>
+            </svg>
+          </button>
+        </div>
+      </form>
+
+      <!-- Success State -->
+      <div id="apply-success" class="hidden px-6 py-10 text-center">
+        <div class="w-16 h-16 bg-green-50 border-2 border-ibm-green rounded-full flex items-center justify-center mx-auto mb-6">
+          <svg class="w-8 h-8 text-ibm-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-ibm-gray-100 mb-3">Application submitted!</h3>
+        <p class="text-ibm-gray-70 leading-relaxed mb-2">
+          Your CV has been received successfully.
+        </p>
+        <p class="text-ibm-gray-70 leading-relaxed mb-8">
+          We are currently running several active selection processes and will personally review your application. You can expect to hear from us within the <strong class="text-ibm-gray-100">next 2 weeks</strong>.
+        </p>
+        <button
+          id="success-close"
+          type="button"
+          class="inline-flex items-center gap-2 px-5 py-2.5 bg-ibm-blue text-white text-sm font-medium rounded hover:bg-ibm-blue-hover transition-colors focus:outline-none focus:ring-2 focus:ring-ibm-blue focus:ring-offset-2"
+        >
+          Close
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById('apply-modal')!;
+  const modalTitle = document.getElementById('modal-title')!;
+  const modalTeam = document.getElementById('modal-team')!;
+  const backdrop = document.getElementById('modal-backdrop')!;
+  const closeBtn = document.getElementById('modal-close')!;
+  const cancelBtn = document.getElementById('modal-cancel')!;
+  const successClose = document.getElementById('success-close')!;
+  const form = document.getElementById('apply-form') as HTMLFormElement;
+  const successPanel = document.getElementById('apply-success')!;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const submitLabel = document.getElementById('submit-label')!;
+  const submitSpinner = document.getElementById('submit-spinner')!;
+  const cvInput = document.getElementById('app-cv') as HTMLInputElement;
+  const dropZone = document.getElementById('drop-zone')!;
+  const dropIdle = document.getElementById('drop-idle')!;
+  const dropSelected = document.getElementById('drop-selected')!;
+  const dropFilename = document.getElementById('drop-filename')!;
+
+  const FOCUSABLE = 'button:not([disabled]), input, textarea, [tabindex]:not([tabindex="-1"])';
+  let lastFocused: HTMLElement | null = null;
+
+  function openModal(roleTitle: string, roleTeam: string) {
+    lastFocused = document.activeElement as HTMLElement;
+    modalTitle.textContent = roleTitle;
+    modalTeam.textContent = roleTeam === 'Open' ? 'General Application · Worldwide / Remote' : `${roleTeam} · Worldwide / Remote`;
+    form.classList.remove('hidden');
+    successPanel.classList.add('hidden');
+    form.reset();
+    resetFileUI();
+    clearErrors();
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => {
+      const first = modal.querySelector<HTMLElement>(FOCUSABLE);
+      first?.focus();
+    }, 50);
+  }
+
+  function closeModal() {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = '';
+    lastFocused?.focus();
+  }
+
+  function resetFileUI() {
+    dropIdle.classList.remove('hidden');
+    dropSelected.classList.add('hidden');
+    dropSelected.classList.remove('flex');
+  }
+
+  function clearErrors() {
+    document.querySelectorAll('[data-error]').forEach(el => el.classList.add('hidden'));
+    document.querySelectorAll('input, textarea').forEach(el => {
+      el.classList.remove('border-ibm-red');
+      el.removeAttribute('aria-invalid');
+    });
+  }
+
+  function showError(fieldId: string) {
+    const field = document.getElementById(fieldId);
+    const msg = document.querySelector<HTMLElement>(`[data-error="${fieldId}"]`);
+    field?.classList.add('border-ibm-red');
+    field?.setAttribute('aria-invalid', 'true');
+    msg?.classList.remove('hidden');
+  }
+
+  function validate(): boolean {
+    clearErrors();
+    let valid = true;
+    const name = (document.getElementById('app-name') as HTMLInputElement).value.trim();
+    const email = (document.getElementById('app-email') as HTMLInputElement).value.trim();
+    const bio = (document.getElementById('app-bio') as HTMLTextAreaElement).value.trim();
+
+    if (!name) { showError('app-name'); valid = false; }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { showError('app-email'); valid = false; }
+    if (!cvInput.files?.length) { showError('app-cv'); valid = false; }
+    if (bio.length < 50) { showError('app-bio'); valid = false; }
+    return valid;
+  }
+
+  // File selection UI
+  cvInput.addEventListener('change', () => {
+    const file = cvInput.files?.[0];
+    if (!file) return;
+    dropIdle.classList.add('hidden');
+    dropSelected.classList.remove('hidden');
+    dropSelected.classList.add('flex');
+    dropFilename.textContent = file.name;
+  });
+
+  // Drag-and-drop styling
+  dropZone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropZone.classList.add('border-ibm-blue', 'bg-ibm-blue/5');
+  });
+  dropZone.addEventListener('dragleave', () => {
+    dropZone.classList.remove('border-ibm-blue', 'bg-ibm-blue/5');
+  });
+  dropZone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropZone.classList.remove('border-ibm-blue', 'bg-ibm-blue/5');
+    const dt = e.dataTransfer;
+    if (dt?.files.length) {
+      const transfer = new DataTransfer();
+      transfer.items.add(dt.files[0]);
+      cvInput.files = transfer.files;
+      cvInput.dispatchEvent(new Event('change'));
+    }
+  });
+
+  // Form submit
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!validate()) return;
+
+    submitBtn.disabled = true;
+    submitLabel.textContent = 'Uploading...';
+    submitSpinner.classList.remove('hidden');
+
+    await new Promise(r => setTimeout(r, 1800));
+
+    form.classList.add('hidden');
+    successPanel.classList.remove('hidden');
+    submitBtn.disabled = false;
+    submitLabel.textContent = 'Submit Application';
+    submitSpinner.classList.add('hidden');
+    successClose.focus();
+  });
+
+  // Trigger buttons
+  document.querySelectorAll<HTMLElement>('.apply-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      openModal(btn.dataset.role ?? 'Open Application', btn.dataset.team ?? 'Open');
+    });
+  });
+
+  // Close handlers
+  closeBtn.addEventListener('click', closeModal);
+  cancelBtn.addEventListener('click', closeModal);
+  successClose.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', closeModal);
+
+  // Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+  });
+
+  // Focus trap
+  modal.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab') return;
+    const focusable = Array.from(modal.querySelectorAll<HTMLElement>(FOCUSABLE));
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
+</script>
