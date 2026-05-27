@@ -1,0 +1,41 @@
+---
+export interface StatItem {
+  value: string;
+  label: string;
+  description: string;
+}
+
+export interface Props {
+  stats: StatItem[];
+}
+
+const { stats } = Astro.props;
+---
+
+<section id="stats" class="bg-ibm-blue py-16 lg:py-20" aria-label="Key statistics">
+  <div class="max-w-8xl mx-auto px-6 lg:px-8">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 lg:gap-16">
+      {stats.map((stat, index) => (
+        <div
+          class="text-center sm:text-left relative"
+          data-stat
+        >
+          {index > 0 && (
+            <div class="hidden sm:block absolute left-0 top-0 bottom-0 w-px bg-white/20" aria-hidden="true"></div>
+          )}
+          <div class="sm:pl-8 first:pl-0">
+            <div
+              class="text-4xl lg:text-5xl font-light text-white mb-2 tabular-nums"
+              data-target={stat.value}
+              aria-label={`${stat.value} ${stat.label}`}
+            >
+              {stat.value}
+            </div>
+            <div class="text-sm font-medium text-ibm-blue-light mb-1">{stat.label}</div>
+            <div class="text-sm text-white/60 leading-relaxed">{stat.description}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

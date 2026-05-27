@@ -1,0 +1,54 @@
+---
+const logos = [
+  { name: 'TechCorp Industries', abbr: 'TC' },
+  { name: 'Global Finance Group', abbr: 'GF' },
+  { name: 'Nexus Healthcare', abbr: 'NH' },
+  { name: 'Apex Manufacturing', abbr: 'AM' },
+  { name: 'Vantage Logistics', abbr: 'VL' },
+  { name: 'Meridian Energy', abbr: 'ME' },
+  { name: 'Atlas Retail Corp', abbr: 'AR' },
+  { name: 'Quantum Systems', abbr: 'QS' },
+];
+---
+
+<section id="clients" class="bg-ibm-gray-10 border-y border-ibm-gray-20 py-12" aria-label="Client logos">
+  <div class="max-w-8xl mx-auto px-6 lg:px-8">
+    <p class="text-center text-xs font-medium text-ibm-gray-60 tracking-wider uppercase mb-8">
+      Trusted by leading enterprises across 40+ industries
+    </p>
+    <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-6 items-center" role="list" aria-label="Client logo grid">
+      {logos.map((logo) => (
+        <div
+          class="flex items-center justify-center"
+          role="listitem"
+          aria-label={logo.name}
+        >
+          <svg
+            width="100"
+            height="40"
+            viewBox="0 0 100 40"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-label={`${logo.name} logo placeholder`}
+            class="opacity-50 hover:opacity-80 transition-opacity duration-200"
+          >
+            <rect width="100" height="40" rx="4" fill="#e0e0e0"/>
+            <text
+              x="50"
+              y="25"
+              text-anchor="middle"
+              fill="#8d8d8d"
+              font-size="12"
+              font-family="IBM Plex Sans, sans-serif"
+              font-weight="600"
+              letter-spacing="1"
+            >
+              {logo.abbr}
+            </text>
+            <title>Replace with {logo.name} logo</title>
+          </svg>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

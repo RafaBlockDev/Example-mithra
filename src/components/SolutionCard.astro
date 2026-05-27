@@ -1,0 +1,74 @@
+---
+export interface Props {
+  icon: string;
+  title: string;
+  description: string;
+  features: string[];
+  href?: string;
+  index?: number;
+}
+
+const { icon, title, description, features, href = '#contact', index = 0 } = Astro.props;
+---
+
+<article
+  class="group relative bg-white border border-ibm-gray-20 rounded-lg p-8 hover:border-ibm-blue hover:shadow-ibm-xl transition-all duration-300 flex flex-col"
+  aria-label={title}
+>
+  <div class="absolute top-0 left-0 right-0 h-1 bg-ibm-blue rounded-t-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></div>
+
+  <div
+    class="w-12 h-12 rounded-lg bg-ibm-blue/10 flex items-center justify-center mb-6 group-hover:bg-ibm-blue group-hover:text-white transition-all duration-300"
+    aria-hidden="true"
+  >
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-ibm-blue group-hover:text-white transition-colors">
+      {icon === 'automation' && (
+        <>
+          <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M2 17l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        </>
+      )}
+      {icon === 'ai' && (
+        <>
+          <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+          <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </>
+      )}
+      {icon === 'process' && (
+        <>
+          <rect x="3" y="3" width="8" height="8" rx="1" stroke="currentColor" stroke-width="2"/>
+          <rect x="13" y="3" width="8" height="8" rx="1" stroke="currentColor" stroke-width="2"/>
+          <rect x="3" y="13" width="8" height="8" rx="1" stroke="currentColor" stroke-width="2"/>
+          <path d="M17 13v-2M17 11a3 3 0 01-3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="17" cy="17" r="2" stroke="currentColor" stroke-width="2"/>
+        </>
+      )}
+    </svg>
+  </div>
+
+  <h3 class="text-xl font-semibold text-ibm-gray-100 mb-3">{title}</h3>
+  <p class="text-ibm-gray-70 leading-relaxed mb-6 flex-grow">{description}</p>
+
+  <ul class="space-y-2 mb-8" role="list">
+    {features.map((feature) => (
+      <li class="flex items-start gap-2 text-sm text-ibm-gray-70">
+        <svg class="w-4 h-4 text-ibm-blue mt-0.5 flex-shrink-0" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/>
+        </svg>
+        {feature}
+      </li>
+    ))}
+  </ul>
+
+  <a
+    href={href}
+    class="inline-flex items-center gap-2 text-sm font-medium text-ibm-blue hover:text-ibm-blue-dark transition-colors group-hover:gap-3 duration-200 focus:outline-none focus:underline"
+    aria-label={`Learn more about ${title}`}
+  >
+    Learn more
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+      <path fill-rule="evenodd" d="M4.5 11.5A.5.5 0 015 11h5.793L5.146 5.354a.5.5 0 11.708-.708l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 11.5H5a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+    </svg>
+  </a>
+</article>

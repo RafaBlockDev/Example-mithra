@@ -1,0 +1,134 @@
+---
+const navLinks = [
+  { label: 'Solutions', href: '#solutions' },
+  { label: 'Platform', href: '#platform' },
+  { label: 'Locations', href: '#locations' },
+  { label: 'Industries', href: '#industries' },
+  { label: 'About', href: '#about' },
+];
+---
+
+<header
+  id="main-nav"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+  role="banner"
+>
+  <nav
+    class="max-w-8xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between"
+    aria-label="Main navigation"
+  >
+    <a href="/" class="flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-ibm-blue focus:ring-offset-2 rounded" aria-label="Mithra Home">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="32" height="32" fill="#0f62fe"/>
+        <path d="M8 8h4v16H8V8zm6 0h2l6 8-6 8h-2l6-8-6-8z" fill="white"/>
+      </svg>
+      <span class="text-lg font-semibold tracking-tight text-ibm-gray-100">Mithra</span>
+    </a>
+
+    <ul class="hidden md:flex items-center gap-1" role="list">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class="px-4 py-2 text-sm font-medium text-ibm-gray-70 hover:text-ibm-gray-100 hover:bg-ibm-gray-10 rounded transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-ibm-blue focus:ring-offset-1"
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <div class="flex items-center gap-3">
+      <a
+        href="#contact"
+        class="hidden sm:inline-flex items-center px-4 py-2 text-sm font-medium text-ibm-blue border border-ibm-blue rounded hover:bg-ibm-blue-light transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-ibm-blue focus:ring-offset-2"
+      >
+        Contact Us
+      </a>
+      <a
+        href="#contact"
+        class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-ibm-blue rounded hover:bg-ibm-blue-hover transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-ibm-blue focus:ring-offset-2"
+      >
+        Start Free Consultation
+      </a>
+      <button
+        id="mobile-menu-btn"
+        class="md:hidden p-2 text-ibm-gray-70 hover:text-ibm-gray-100 hover:bg-ibm-gray-10 rounded transition-colors focus:outline-none focus:ring-2 focus:ring-ibm-blue"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Toggle mobile menu"
+      >
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden border-t border-ibm-gray-20 bg-white"
+    role="navigation"
+    aria-label="Mobile navigation"
+  >
+    <ul class="max-w-8xl mx-auto px-6 py-4 flex flex-col gap-1" role="list">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class="block px-4 py-3 text-sm font-medium text-ibm-gray-70 hover:text-ibm-gray-100 hover:bg-ibm-gray-10 rounded transition-colors"
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+      <li class="pt-2 border-t border-ibm-gray-20">
+        <a
+          href="#contact"
+          class="block w-full text-center px-4 py-3 text-sm font-medium text-white bg-ibm-blue rounded hover:bg-ibm-blue-hover transition-colors"
+        >
+          Start Free Consultation
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const nav = document.getElementById('main-nav');
+  const mobileBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      nav?.classList.add('bg-white/95', 'backdrop-blur-sm', 'shadow-ibm-sm', 'border-b', 'border-ibm-gray-20');
+    } else {
+      nav?.classList.remove('bg-white/95', 'backdrop-blur-sm', 'shadow-ibm-sm', 'border-b', 'border-ibm-gray-20');
+    }
+  });
+
+  mobileBtn?.addEventListener('click', () => {
+    const isExpanded = mobileBtn.getAttribute('aria-expanded') === 'true';
+    mobileBtn.setAttribute('aria-expanded', String(!isExpanded));
+    mobileMenu?.classList.toggle('hidden');
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      const href = anchor.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          const navHeight = nav?.offsetHeight ?? 64;
+          const top = target.getBoundingClientRect().top + window.scrollY - navHeight;
+          window.scrollTo({ top, behavior: 'smooth' });
+          if (!mobileMenu?.classList.contains('hidden')) {
+            mobileMenu?.classList.add('hidden');
+            mobileBtn?.setAttribute('aria-expanded', 'false');
+          }
+        }
+      }
+    });
+  });
+</script>

@@ -1,0 +1,152 @@
+---
+export interface Props {
+  headline: string;
+  subheadline: string;
+  primaryCTA: string;
+  secondaryCTA: string;
+}
+
+const { headline, subheadline, primaryCTA, secondaryCTA } = Astro.props;
+---
+
+<section
+  id="hero"
+  class="relative pt-16 overflow-hidden bg-ibm-gray-100"
+  aria-label="Hero section"
+>
+  <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
+    <div class="absolute -top-40 -right-40 w-96 h-96 bg-ibm-blue opacity-10 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/2 -left-20 w-80 h-80 bg-ibm-cyan opacity-8 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-1/3 w-64 h-64 bg-ibm-blue opacity-5 rounded-full blur-2xl"></div>
+    <svg class="absolute bottom-0 left-0 right-0 w-full" height="2" viewBox="0 0 1440 2" preserveAspectRatio="none">
+      <line x1="0" y1="1" x2="1440" y2="1" stroke="#0f62fe" stroke-width="2" opacity="0.4"/>
+    </svg>
+  </div>
+
+  <div class="relative max-w-8xl mx-auto px-6 lg:px-8 py-24 lg:py-32">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div class="max-w-2xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-ibm-blue/20 border border-ibm-blue/30 rounded-full mb-6">
+          <span class="w-2 h-2 bg-ibm-blue rounded-full animate-pulse" aria-hidden="true"></span>
+          <span class="text-xs font-medium text-ibm-blue-light tracking-wider uppercase">Enterprise AI Platform</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-light text-white leading-tight mb-6">
+          {headline.split(' ').slice(0, 3).join(' ')}
+          <span class="font-semibold text-ibm-blue"> {headline.split(' ').slice(3).join(' ')}</span>
+        </h1>
+
+        <p class="text-lg text-ibm-gray-30 leading-relaxed mb-10 max-w-xl">
+          {subheadline}
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a
+            href="#contact"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-ibm-blue text-white font-medium rounded hover:bg-ibm-blue-hover transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-ibm-blue focus:ring-offset-2 focus:ring-offset-ibm-gray-100 shadow-ibm-md hover:shadow-ibm-lg"
+            aria-label="Start your free consultation"
+          >
+            {primaryCTA}
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M8.75 3.75a.75.75 0 00-1.5 0v3.5h-3.5a.75.75 0 000 1.5h3.5v3.5a.75.75 0 001.5 0v-3.5h3.5a.75.75 0 000-1.5h-3.5v-3.5z"/>
+            </svg>
+          </a>
+          <a
+            href="#platform"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-transparent text-white font-medium rounded border border-white/30 hover:border-white/60 hover:bg-white/10 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-ibm-gray-100"
+          >
+            {secondaryCTA}
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M4.5 11.5A.5.5 0 015 11h5.793L5.146 5.354a.5.5 0 11.708-.708l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 11.5H5a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="mt-12 flex items-center gap-6 pt-8 border-t border-white/10">
+          <div class="text-center">
+            <div class="text-2xl font-semibold text-white">500+</div>
+            <div class="text-xs text-ibm-gray-40 mt-0.5">Enterprise Clients</div>
+          </div>
+          <div class="w-px h-10 bg-white/10" aria-hidden="true"></div>
+          <div class="text-center">
+            <div class="text-2xl font-semibold text-white">2M+</div>
+            <div class="text-xs text-ibm-gray-40 mt-0.5">Hours Automated</div>
+          </div>
+          <div class="w-px h-10 bg-white/10" aria-hidden="true"></div>
+          <div class="text-center">
+            <div class="text-2xl font-semibold text-white">40+</div>
+            <div class="text-xs text-ibm-gray-40 mt-0.5">Industry Verticals</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative flex justify-center lg:justify-end" role="img" aria-label="Platform dashboard visualization placeholder">
+        <div class="relative w-full max-w-lg">
+          <svg
+            width="100%"
+            viewBox="0 0 560 420"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="rounded-lg shadow-ibm-xl"
+            role="presentation"
+          >
+            <rect width="560" height="420" rx="8" fill="#262626"/>
+            <rect x="0" y="0" width="560" height="40" rx="8" fill="#393939"/>
+            <rect x="0" y="32" width="560" height="8" fill="#393939"/>
+            <circle cx="20" cy="20" r="6" fill="#da1e28"/>
+            <circle cx="40" cy="20" r="6" fill="#f1c21b"/>
+            <circle cx="60" cy="20" r="6" fill="#198038"/>
+            <rect x="16" y="56" width="160" height="120" rx="4" fill="#393939"/>
+            <rect x="16" y="56" width="160" height="4" rx="2" fill="#0f62fe"/>
+            <text x="24" y="80" fill="#c6c6c6" font-size="10" font-family="IBM Plex Mono">OPERATIONS</text>
+            <rect x="24" y="90" width="60" height="8" rx="2" fill="#525252"/>
+            <rect x="24" y="106" width="80" height="8" rx="2" fill="#525252"/>
+            <rect x="24" y="122" width="50" height="8" rx="2" fill="#525252"/>
+            <text x="24" y="152" fill="#0f62fe" font-size="18" font-family="IBM Plex Mono" font-weight="600">98.7%</text>
+            <text x="24" y="166" fill="#8d8d8d" font-size="9" font-family="IBM Plex Mono">Uptime SLA</text>
+            <rect x="192" y="56" width="160" height="120" rx="4" fill="#393939"/>
+            <rect x="192" y="56" width="160" height="4" rx="2" fill="#1192e8"/>
+            <text x="200" y="80" fill="#c6c6c6" font-size="10" font-family="IBM Plex Mono">AI PIPELINE</text>
+            <rect x="200" y="88" width="144" height="16" rx="2" fill="#525252"/>
+            <rect x="200" y="88" width="108" height="16" rx="2" fill="#0f62fe" opacity="0.7"/>
+            <rect x="200" y="112" width="144" height="16" rx="2" fill="#525252"/>
+            <rect x="200" y="112" width="120" height="16" rx="2" fill="#1192e8" opacity="0.7"/>
+            <rect x="200" y="136" width="144" height="16" rx="2" fill="#525252"/>
+            <rect x="200" y="136" width="90" height="16" rx="2" fill="#009d9a" opacity="0.7"/>
+            <rect x="200" y="160" width="48" height="8" rx="2" fill="#525252"/>
+            <text x="200" y="170" fill="#8d8d8d" font-size="9" font-family="IBM Plex Mono">Processing</text>
+            <rect x="368" y="56" width="176" height="120" rx="4" fill="#393939"/>
+            <rect x="368" y="56" width="176" height="4" rx="2" fill="#198038"/>
+            <text x="376" y="80" fill="#c6c6c6" font-size="10" font-family="IBM Plex Mono">INSIGHTS</text>
+            <circle cx="456" cy="120" r="40" fill="none" stroke="#525252" stroke-width="16"/>
+            <circle cx="456" cy="120" r="40" fill="none" stroke="#0f62fe" stroke-width="16" stroke-dasharray="165 86" stroke-dashoffset="41"/>
+            <circle cx="456" cy="120" r="40" fill="none" stroke="#1192e8" stroke-width="16" stroke-dasharray="50 201" stroke-dashoffset="-124"/>
+            <text x="443" y="125" fill="#ffffff" font-size="14" font-family="IBM Plex Mono" font-weight="600">74%</text>
+            <rect x="16" y="192" width="528" height="100" rx="4" fill="#393939"/>
+            <rect x="16" y="192" width="528" height="4" rx="2" fill="#8a3ffc"/>
+            <text x="24" y="214" fill="#c6c6c6" font-size="10" font-family="IBM Plex Mono">AUTOMATION METRICS — LAST 30 DAYS</text>
+            <polyline points="24,270 80,255 136,260 192,240 248,245 304,225 360,230 416,210 472,215 528,200" stroke="#0f62fe" stroke-width="2" fill="none"/>
+            <polyline points="24,280 80,275 136,278 192,265 248,268 304,255 360,258 416,245 472,248 528,240" stroke="#1192e8" stroke-width="1.5" fill="none" stroke-dasharray="4 2"/>
+            <rect x="16" y="308" width="528" height="96" rx="4" fill="#393939"/>
+            <rect x="16" y="308" width="528" height="4" rx="2" fill="#f1c21b"/>
+            <text x="24" y="330" fill="#c6c6c6" font-size="10" font-family="IBM Plex Mono">RECENT PROCESSES</text>
+            <rect x="24" y="340" width="100" height="8" rx="2" fill="#525252"/>
+            <rect x="24" y="356" width="80" height="8" rx="2" fill="#525252"/>
+            <rect x="24" y="372" width="120" height="8" rx="2" fill="#525252"/>
+            <rect x="160" y="340" width="60" height="8" rx="2" fill="#525252"/>
+            <rect x="160" y="356" width="40" height="8" rx="2" fill="#525252"/>
+            <rect x="160" y="372" width="80" height="8" rx="2" fill="#525252"/>
+            <rect x="240" y="340" width="80" height="8" rx="2" fill="#0f62fe" opacity="0.6"/>
+            <rect x="240" y="356" width="60" height="8" rx="2" fill="#198038" opacity="0.6"/>
+            <rect x="240" y="372" width="70" height="8" rx="2" fill="#0f62fe" opacity="0.6"/>
+            <text x="24" y="400" fill="#6f6f6f" font-size="9" font-family="IBM Plex Mono">Replace with real dashboard screenshot — 560×420px</text>
+          </svg>
+          <div class="absolute -bottom-3 -right-3 w-24 h-24 bg-ibm-blue opacity-20 rounded-full blur-xl" aria-hidden="true"></div>
+          <div class="absolute -top-3 -left-3 w-16 h-16 bg-ibm-cyan opacity-15 rounded-full blur-lg" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-ibm-blue/40 to-transparent" aria-hidden="true"></div>
+</section>

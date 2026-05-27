@@ -1,0 +1,96 @@
+---
+export interface Props {
+  city: string;
+  country: string;
+  description: string;
+  status: 'active' | 'q3-2026' | 'q4-2026';
+  address?: string;
+  focus?: string;
+}
+
+const { city, country, description, status, address, focus } = Astro.props;
+
+const statusConfig = {
+  'active': {
+    label: 'Operational',
+    classes: 'bg-green-50 text-ibm-green border-green-200',
+    dotClass: 'bg-ibm-green',
+    pulse: true,
+  },
+  'q3-2026': {
+    label: 'Launching Q3 2026',
+    classes: 'bg-ibm-blue/5 text-ibm-blue border-ibm-blue/20',
+    dotClass: 'bg-ibm-blue',
+    pulse: false,
+  },
+  'q4-2026': {
+    label: 'Launching Q4 2026',
+    classes: 'bg-ibm-gray-10 text-ibm-gray-60 border-ibm-gray-20',
+    dotClass: 'bg-ibm-gray-40',
+    pulse: false,
+  },
+};
+
+const config = statusConfig[status];
+---
+
+<article
+  class={`bg-white border rounded-lg p-6 lg:p-8 transition-all duration-300 ${status === 'active' ? 'border-ibm-gray-20 hover:border-ibm-blue hover:shadow-ibm-lg' : 'border-ibm-gray-20 opacity-85 hover:opacity-100'}`}
+  aria-label={`${city}, ${country} office`}
+>
+  <div class="flex items-start justify-between mb-4">
+    <div>
+      <h3 class="text-xl font-semibold text-ibm-gray-100">{city}</h3>
+      <p class="text-sm text-ibm-gray-60 mt-0.5">{country}</p>
+    </div>
+    <span
+      class={`inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium border rounded-full ${config.classes}`}
+      aria-label={`Office status: ${config.label}`}
+    >
+      <span
+        class={`w-1.5 h-1.5 rounded-full ${config.dotClass} ${config.pulse ? 'animate-pulse' : ''}`}
+        aria-hidden="true"
+      ></span>
+      {config.label}
+    </span>
+  </div>
+
+  <svg
+    width="100%"
+    viewBox="0 0 280 140"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    class="rounded mb-4"
+    aria-label={`${city} office location map placeholder`}
+    role="presentation"
+  >
+    <rect width="280" height="140" fill="#f4f4f4"/>
+    <rect x="60" y="30" width="160" height="80" rx="4" fill="#e0e0e0"/>
+    <line x1="0" y1="70" x2="280" y2="70" stroke="#d4d4d4" stroke-width="1"/>
+    <line x1="140" y1="0" x2="140" y2="140" stroke="#d4d4d4" stroke-width="1"/>
+    <circle cx="140" cy="70" r="8" fill="#0f62fe"/>
+    <circle cx="140" cy="70" r="16" fill="#0f62fe" opacity="0.2"/>
+    <circle cx="140" cy="70" r="24" fill="#0f62fe" opacity="0.1"/>
+    <text x="140" y="125" text-anchor="middle" fill="#8d8d8d" font-size="9" font-family="IBM Plex Sans">
+      Replace with {city} map — 280×140px
+    </text>
+  </svg>
+
+  <p class="text-sm text-ibm-gray-70 leading-relaxed mb-4">{description}</p>
+
+  {address && (
+    <p class="text-xs text-ibm-gray-50 flex items-start gap-1.5 mb-2">
+      <svg class="w-3.5 h-3.5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M8 0C5.243 0 3 2.243 3 5c0 3.75 5 11 5 11s5-7.25 5-11c0-2.757-2.243-5-5-5zm0 7a2 2 0 110-4 2 2 0 010 4z"/>
+      </svg>
+      {address}
+    </p>
+  )}
+
+  {focus && (
+    <div class="pt-4 border-t border-ibm-gray-10">
+      <span class="text-xs text-ibm-gray-50 font-medium uppercase tracking-wider">Focus: </span>
+      <span class="text-xs text-ibm-gray-70">{focus}</span>
+    </div>
+  )}
+</article>
